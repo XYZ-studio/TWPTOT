@@ -2,7 +2,6 @@
 . "$(dirname "$0")/_/husky.sh"
 
 npm run build
-
 cd dist
 git init
 git status
