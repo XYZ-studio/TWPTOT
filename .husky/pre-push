@@ -1,0 +1,16 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npm run build
+
+cd dist
+git init
+git status
+# 記得改git
+git remote add gh-pages https://github.com/NTIHS-IT/react.git
+git checkout -b gh-pages
+git add --all
+git commit -m "build"
+git push --set-upstream gh-pages gh-pages -f
+cd ..
+rm -r dist
