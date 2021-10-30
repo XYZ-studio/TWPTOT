@@ -8,6 +8,8 @@
     "lint": "eslint src/*.tsx"
   },
   "dependencies": {
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
     "@mui/material": "^5.0.6",
     "axios": "^0.24.0",
     "husky": "^7.0.4",
