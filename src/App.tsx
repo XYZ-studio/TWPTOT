@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, StaticRouter as Router, Route} from 'react-router-dom';
+import {Switch, BrowserRouter as Router, Route} from 'react-router-dom';
 import Home from './components/home';
 import Rick from './components/rick';
 /**
@@ -7,7 +7,7 @@ import Rick from './components/rick';
 **/
 function App() {
   return (
-    <Router>
+    <Router basename="/TWPTOT">
       <Switch>
         <Route exact path="/">
           <Home />
