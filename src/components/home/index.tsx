@@ -6,9 +6,9 @@ import RouteMap from './routemap';
 import './home.sass';
 
 /**
- * @return {JSX}
+ * @return {JSX.Element}
 **/
-function Home() {
+function Home(): JSX.Element {
   const [table, setTable] = useState('search');
   const tableChange = (_: SyntheticEvent, newValue: string) => {
     setTable(newValue);

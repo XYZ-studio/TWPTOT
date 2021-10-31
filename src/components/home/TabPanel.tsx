@@ -9,9 +9,9 @@ export interface TabPanelProps {
  * @param {JSX.Element} TabPanel.children
  * @param {string} TabPanel.value
  * @param {string} TabPanel.index
- * @return {JSX | null}
+ * @return {JSX.Element | null}
 **/
-function TabPanel({children, value, index}: TabPanelProps) {
+function TabPanel({children, value, index}: TabPanelProps): JSX.Element | null {
   return (value === index ? children : null);
 }
 

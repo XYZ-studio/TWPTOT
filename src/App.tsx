@@ -3,9 +3,9 @@ import {Switch, BrowserRouter as Router, Route} from 'react-router-dom';
 import Home from './components/home';
 import Rick from './components/rick';
 /**
- * @return{JSX}
+ * @return{JSX.Element}
 **/
-function App() {
+function App(): JSX.Element {
   return (
     <Router basename="/TWPTOT">
       <Switch>

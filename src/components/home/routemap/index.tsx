@@ -4,9 +4,9 @@ import TabPanel from '../TabPanel';
 import './routemap.sass';
 
 /**
- * @return {JSX}
+ * @return {JSX.Element}
 **/
-function RouteMap() {
+function RouteMap(): JSX.Element {
   const [routeMap, setRouteMap] = useState('taipei');
   const tableChange = (_: SyntheticEvent, newValue: string) => {
     setRouteMap(newValue);
