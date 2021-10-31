@@ -1,8 +1,12 @@
 #routemap
+  height: 100%
   img
-    max-height: calc(100vw - 100px)
+    max-height: calc(100vw - 500px)
     margin: 0 auto
     display: block
+    @media screen and ( max-width: 820px )
+      width: 100%
+      max-height: 100%
   
 #routemap-menu
   width: 100%
@@ -10,4 +14,5 @@
   background-color: #272727
 
 #image
-  padding-top: 50px
+  padding-top: 60px
+  padding-bottom: 10px
