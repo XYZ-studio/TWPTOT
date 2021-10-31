@@ -23,6 +23,8 @@ function Home(): JSX.Element {
         id="menu"
       >
         <Tab label="公車" value="bus" sx={{color: '#c5c3c3'}}/>
+        <Tab label="臺鐵" value="railway" sx={{color: '#c5c3c3'}}/>
+        <Tab label="高鐵" value="thsrc" sx={{color: '#c5c3c3'}} />
         <Tab label="路線規劃" value="directions" sx={{color: '#c5c3c3'}}/>
         <Tab label="捷運路網圖" value="routemap" sx={{color: '#c5c3c3'}}/>
       </Tabs>
