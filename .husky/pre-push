@@ -6,7 +6,7 @@ cd dist
 git init
 git status
 # 記得改git
-git remote add gh-pages https://github.com/NTIHS-IT/react.git
+git remote add gh-pages https://github.com/XYZ-studio/TWPTOT.git
 git checkout -b gh-pages
 git add --all
 git commit -m "build"
