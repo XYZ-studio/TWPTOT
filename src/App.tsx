@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, HashRouter as Router, Route} from 'react-router-dom';
+import {Switch, StaticRouter as Router, Route} from 'react-router-dom';
 import Home from './components/home';
 import Rick from './components/rick';
 /**
