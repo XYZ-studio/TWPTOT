@@ -13,7 +13,15 @@ function RouteMap() {
   };
   return (
     <div id="routemap">
-      <Tabs value={routeMap} onChange={tableChange} id="routemap-menu">
+      <Tabs
+        value={routeMap}
+        onChange={tableChange}
+        id="routemap-menu"
+        variant="scrollable"
+        allowScrollButtonsMobile
+        scrollButtons="auto"
+        sx={{color: '#c5c3c3'}}
+      >
         <Tab value="taipei" label="台北捷運" sx={{color: '#c5c3c3'}}/>
         <Tab value="taoyuan" label="桃源機場捷運" sx={{color: '#c5c3c3'}}/>
         <Tab value="TMRT" label="台中捷運" sx={{color: '#c5c3c3'}}/>
