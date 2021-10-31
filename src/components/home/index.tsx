@@ -1,6 +1,8 @@
 import React, {useState, SyntheticEvent} from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import TabPanel from './TabPanel';
+import RouteMap from './routemap';
 import './home.sass';
 
 /**
@@ -24,6 +26,11 @@ function Home() {
         <Tab label="路線規劃" value="directions" sx={{color: '#c5c3c3'}}/>
         <Tab label="捷運路網圖" value="routemap" sx={{color: '#c5c3c3'}}/>
       </Tabs>
+      <div id="content">
+        <TabPanel value={table} index="routemap">
+          <RouteMap />
+        </TabPanel>
+      </div>
     </div>
   );
 }
