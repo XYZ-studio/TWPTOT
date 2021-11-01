@@ -3,6 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import TabPanel from './TabPanel';
 import RouteMap from './routemap';
+import Thsrc from './thsrc';
 import './home.sass';
 
 /**
@@ -13,6 +14,7 @@ function Home(): JSX.Element {
   const tableChange = (_: SyntheticEvent, newValue: string) => {
     setTable(newValue);
   };
+
   return (
     <div id="home">
       <Tabs
@@ -31,6 +33,9 @@ function Home(): JSX.Element {
       <div id="content">
         <TabPanel value={table} index="routemap">
           <RouteMap />
+        </TabPanel>
+        <TabPanel value={table} index="thsrc">
+          <Thsrc />
         </TabPanel>
       </div>
     </div>
