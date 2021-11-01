@@ -1,3 +1,7 @@
+---
+tags: Project
+---
+
 # 臺灣公交一次通
 
 View on [HackMD](https://hackmd.io/@AVnwDI7AT1WV00h61-dCIg/B14lVgQUt)  
@@ -17,10 +21,15 @@ View on [HackMD](https://hackmd.io/@AVnwDI7AT1WV00h61-dCIg/B14lVgQUt)
 ## 實做
 
 - 以網頁的形式呈現減少跨平台的不便
-- 目前規劃整合臺灣鐵路、臺灣高鐵、各縣市公車、各捷運網路圖與查詢
-    - 如有需求在增加
+- 目前規劃整合各大眾運輸工具路線與時間與查詢
+    - 如有需求再增加
 
 ## 功能列表
+
+1. 臺灣鐵路
+2. 臺灣高鐵
+3. 各縣市公車
+4. 各捷運網路圖
 
 - 班次查詢
 - 查看時刻表
