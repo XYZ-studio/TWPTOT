@@ -23,7 +23,7 @@ export const City = {
 
 export type CityListType = keyof typeof City;
 
-export const CityList = [
+export const CityList: Array<CityListType> = [
   'KEE',
   'NWT',
   'TPE',

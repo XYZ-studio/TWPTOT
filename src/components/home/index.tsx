@@ -4,6 +4,7 @@ import Tab from '@mui/material/Tab';
 import TabPanel from './TabPanel';
 import RouteMap from './routemap';
 import Thsrc from './thsrc';
+import Railway from './railway';
 import './home.sass';
 
 /**
@@ -36,6 +37,9 @@ function Home(): JSX.Element {
         </TabPanel>
         <TabPanel value={table} index="thsrc">
           <Thsrc />
+        </TabPanel>
+        <TabPanel value={table} index="railway">
+          <Railway />
         </TabPanel>
       </div>
     </div>
