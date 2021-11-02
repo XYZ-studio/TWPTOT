@@ -16,17 +16,15 @@ interface SelectCityProp {
 function SelectCity({selectCity, handleChange}: SelectCityProp): JSX.Element {
   return (
     <FormControl style={{width: '95px'}}>
-      <InputLabel id="demo-simple-select-label">Age</InputLabel>
+      <InputLabel id="demo-simple-select-label">縣市</InputLabel>
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"
         value={selectCity}
         label="縣市"
         onChange={handleChange}
+        sx={{color: '#c5c3c3'}}
       >
-        <MenuItem value="None">
-          None
-        </MenuItem>
         {
           CityList.map((city: CityListType) => {
             return (
