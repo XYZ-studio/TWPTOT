@@ -12,13 +12,13 @@ import './railway.sass';
 **/
 function Railway(): JSX.Element {
   const [railwayStation, setRailwayStation] = useState<Array<Station>>([]);
-  const [startCity, setStartCity] = useState<CityListType | ''>('');
-  const [endCity, setEndCity] = useState<CityListType | ''>('');
+  const [startCity, setStartCity] = useState<CityListType>('');
+  const [endCity, setEndCity] = useState<CityListType>('');
   const startHandleChange = (event: SelectChangeEvent) => {
-    setStartCity(event.target.value as CityListType | '');
+    setStartCity(event.target.value as CityListType);
   };
   const endHandleChange = (event: SelectChangeEvent) => {
-    setEndCity(event.target.value as CityListType | '');
+    setEndCity(event.target.value as CityListType);
   };
 
   useEffect(() => {
