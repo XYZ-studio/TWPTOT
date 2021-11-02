@@ -35,7 +35,7 @@ function SelectCity({selectCity, handleChange}: SelectCityProp): JSX.Element {
                 value={city}
                 key={city}
               >
-                {city === '' ? '' : City[city]}
+                {city === '' ? null : City[city]}
               </MenuItem>
             );
           })
