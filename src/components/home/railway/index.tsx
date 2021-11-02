@@ -32,16 +32,19 @@ function Railway(): JSX.Element {
 
   return (
     <div id="railway">
-      <SelectCity selectCity={startCity} handleChange={startHandleChange} />
-      <span style={{
-        display: 'block',
-        textAlign: 'center',
-        fontSize: '30px',
-        color: '#ffff',
-      }}>
-        <FontAwesomeIcon icon={faLongArrowAltDown} />
-      </span>
-      <SelectCity selectCity={endCity} handleChange={endHandleChange} />
+      <div id="search">
+        <h2>查詢班次</h2>
+        <SelectCity selectCity={startCity} handleChange={startHandleChange} />
+        <span style={{
+          display: 'block',
+          textAlign: 'center',
+          fontSize: '30px',
+          color: '#ffff',
+        }}>
+          <FontAwesomeIcon icon={faLongArrowAltDown} />
+        </span>
+        <SelectCity selectCity={endCity} handleChange={endHandleChange} />
+      </div>
     </div>
   );
 }

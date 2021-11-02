@@ -1,6 +1,14 @@
 import React, {useState, SyntheticEvent} from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import {
+  faBus,
+  faSubway,
+  faMapMarkerAlt,
+  faTrain,
+} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import HSR from './svg/hsr.svg';
 import TabPanel from './TabPanel';
 import RouteMap from './routemap';
 import Thsrc from './thsrc';
@@ -22,14 +30,35 @@ function Home(): JSX.Element {
         value={table}
         onChange={tableChange}
         variant="fullWidth"
-        centered
+        selectionFollowsFocus={true}
+        allowScrollButtonsMobile
+        scrollButtons
         id="menu"
       >
-        <Tab label="公車" value="bus" sx={{color: '#c5c3c3'}}/>
-        <Tab label="臺鐵" value="railway" sx={{color: '#c5c3c3'}}/>
-        <Tab label="高鐵" value="thsrc" sx={{color: '#c5c3c3'}} />
-        <Tab label="路線規劃" value="directions" sx={{color: '#c5c3c3'}}/>
-        <Tab label="捷運路網圖" value="routemap" sx={{color: '#c5c3c3'}}/>
+        <Tab
+          label={<FontAwesomeIcon icon={faBus} />}
+          value="bus" sx={{color: '#c5c3c3'}}
+        />
+        <Tab
+          label={<FontAwesomeIcon icon={faTrain} />}
+          value="railway"
+          sx={{color: '#c5c3c3'}}
+        />
+        <Tab
+          label={<img src={HSR} />}
+          value="thsrc"
+          sx={{color: '#c5c3c3'}}
+        />
+        <Tab
+          label={<FontAwesomeIcon icon={faMapMarkerAlt} />}
+          value="directions"
+          sx={{color: '#c5c3c3'}}
+        />
+        <Tab
+          label={<FontAwesomeIcon icon={faSubway} />}
+          value="routemap"
+          sx={{color: '#c5c3c3'}}
+        />
       </Tabs>
       <div id="content">
         <TabPanel value={table} index="routemap">

@@ -15,8 +15,11 @@ interface SelectCityProp {
 **/
 function SelectCity({selectCity, handleChange}: SelectCityProp): JSX.Element {
   return (
-    <FormControl style={{width: '95px'}}>
-      <InputLabel id="demo-simple-select-label">縣市</InputLabel>
+    <FormControl style={{width: '150px'}}>
+      <InputLabel
+        id="demo-simple-select-label"
+        style={{color: '#ffff'}}
+      >縣市</InputLabel>
       <Select
         labelId="demo-simple-select-label"
         id="demo-simple-select"
