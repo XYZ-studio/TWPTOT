@@ -39,7 +39,7 @@ function SelectStation(
       >
         {
           railwayStations.map((station: Station) => {
-            return selectCity === '' ? (
+            return selectCity === 'all' ? (
               <MenuItem
                 value={station.StationName.En}
                 key={station.StationName.En}

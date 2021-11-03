@@ -19,9 +19,9 @@ interface SelectData {
 function Railway(): JSX.Element {
   const [railwayStation, setRailwayStation] = useState<Array<Station>>([]);
   const [start, setStart] =
-    useState<SelectData>({city: '', station: ''});
+    useState<SelectData>({city: 'all', station: ''});
   const [end, setEnd] =
-    useState<SelectData>({city: '', station: ''});
+    useState<SelectData>({city: 'all', station: ''});
   const startHandleChange = (set: string) => {
     return (event: SelectChangeEvent) => {
       setStart({

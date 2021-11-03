@@ -21,7 +21,7 @@ export const City = {
   ILA: '宜蘭縣',
 };
 
-export type CityListType = keyof typeof City | '';
+export type CityListType = keyof typeof City | 'all';
 
 export const CityList: Array<CityListType> = [
   'KEE',
