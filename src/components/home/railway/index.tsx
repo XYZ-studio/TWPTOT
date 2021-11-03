@@ -75,6 +75,12 @@ function Railway(): JSX.Element {
           selectCity={end.city}
           handleChange={endHandleChange('city')}
         />
+        <SelectStation
+          selectCity={end.city}
+          railwayStations={railwayStation}
+          selectStation={end.station}
+          handleChange={endHandleChange('station')}
+        />
       </div>
     </div>
   );
