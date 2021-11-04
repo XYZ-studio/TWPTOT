@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import dateFormat from 'dateformat';
 import {SelectChangeEvent} from '@mui/material/Select';
-import SelectStation from './selectStation';
+import SelectStation from '../railway/selectStation';
 import {ptxAPI} from '../api/ptx';
 import {Station} from '../data/Station';
 import './thsrc.sass';
@@ -31,6 +31,7 @@ function Thsrc(): JSX.Element {
       const response =
         await ptxAPI.get<Array<Station>>('/Rail/THSR/Station?$format=JSON');
       const data = response.data;
+      console.log(data);
       setThsrcStation(data);
     })();
   }, []);
@@ -56,7 +57,7 @@ function Thsrc(): JSX.Element {
         <h2>查詢班次</h2>
         <div className='select'>
           <SelectStation
-            thsrcStations={thsrcStation}
+            stations={thsrcStation}
             selectStation={start.station}
             handleChange={startHandleChange('station')}
           />
