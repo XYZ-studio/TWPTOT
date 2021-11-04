@@ -22,10 +22,14 @@ function RouteMap(): JSX.Element {
         scrollButtons="auto"
         sx={{color: '#c5c3c3'}}
       >
-        <Tab value="taipei" label="台北捷運" sx={{color: '#c5c3c3'}}/>
-        <Tab value="taoyuan" label="桃源機場捷運" sx={{color: '#c5c3c3'}}/>
-        <Tab value="TMRT" label="台中捷運" sx={{color: '#c5c3c3'}}/>
-        <Tab value="KMRT" label="高雄捷運" sx={{color: '#c5c3c3'}}/>
+        <Tab value="taipei" label="台北捷運"
+          className="routemap-menu" sx={{color: '#c5c3c3'}}/>
+        <Tab value="taoyuan" label="桃源機場捷運"
+          className="routemap-menu" sx={{color: '#c5c3c3'}}/>
+        <Tab value="TMRT" label="台中捷運"
+          className="routemap-menu" sx={{color: '#c5c3c3'}}/>
+        <Tab value="KMRT" label="高雄捷運"
+          className="routemap-menu" sx={{color: '#c5c3c3'}}/>
       </Tabs>
       <div id="image">
         <TabPanel value={routeMap} index="taipei">
