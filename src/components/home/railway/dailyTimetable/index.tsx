@@ -11,14 +11,16 @@ interface DailyTimetableProp {
 function DailyTimetable({dailyTimetable}: DailyTimetableProp): JSX.Element {
   return (
     <table>
-      {dailyTimetable.map((dailyTime) => {
-        return (
-          <DailyTime
-            key={dailyTime.DailyTrainInfo.TrainNo}
-            dailyTime={dailyTime}
-          />
-        );
-      })}
+      <tbody>
+        {dailyTimetable.map((dailyTime) => {
+          return (
+            <DailyTime
+              key={dailyTime.DailyTrainInfo.TrainNo}
+              dailyTime={dailyTime}
+            />
+          );
+        })}
+      </tbody>
     </table>
   );
 }
