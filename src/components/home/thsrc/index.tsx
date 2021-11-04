@@ -31,7 +31,6 @@ function Thsrc(): JSX.Element {
       const response =
         await ptxAPI.get<Array<Station>>('/Rail/THSR/Station?$format=JSON');
       const data = response.data;
-      console.log(data);
       setThsrcStation(data);
     })();
   }, []);

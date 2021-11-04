@@ -103,7 +103,9 @@ function Railway(): JSX.Element {
           />
         </div>
       </div>
-      <DailyTimetable dailyTimetable={dailyTimetable} />
+      {dailyTimetable.length === 0 ? null : (
+        <DailyTimetable dailyTimetable={dailyTimetable} />
+      )}
     </div>
   );
 }
