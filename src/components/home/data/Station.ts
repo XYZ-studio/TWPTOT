@@ -27,3 +27,25 @@ export interface Station {
   LocationTown: string;
   LocationTownCode: string;
 }
+
+export interface StopTime {
+  StationName: StationName;
+  ArrivalTime: string;
+}
+
+export interface DailyTrainInfo {
+  TrainNo: string;
+  StartingStationID: string;
+  StartingStationName: StationName;
+  EndingStationID: string;
+  EndingStationName: StationName;
+  TrainTypeName: string;
+  Note: string;
+}
+
+export interface DailyTimetableType {
+  DailyTrainInfo: DailyTrainInfo;
+  OriginStopTime: StopTime;
+  DestinationStopTime: StopTime;
+}
+

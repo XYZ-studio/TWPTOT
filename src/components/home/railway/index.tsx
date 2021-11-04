@@ -5,7 +5,8 @@ import {faLongArrowAltDown} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import SelectCity from './selectCity';
 import SelectStation from './selectStation';
-import {Station} from '../data/Station';
+import DailyTimetable from './dailyTimetable';
+import {Station, DailyTimetableType} from '../data/Station';
 import {CityListType} from '../data/City';
 import {ptxAPI} from '../api/ptx';
 import './railway.sass';
@@ -19,6 +20,8 @@ interface SelectData {
 **/
 function Railway(): JSX.Element {
   const [railwayStation, setRailwayStation] = useState<Array<Station>>([]);
+  const [dailyTimetable, setDailyTimetable] =
+    useState<Array<DailyTimetableType>>([]);
   const [start, setStart] =
     useState<SelectData>({city: 'all', station: ''});
   const [end, setEnd] =
@@ -52,13 +55,13 @@ function Railway(): JSX.Element {
   useEffect(() => {
     (async () => {
       const date = new Date();
-      const dateFromat = dateFormat(date, 'yyyy-MM-dd');
+      const dateFromat = dateFormat(date, 'yyyy-mm-dd');
       if (start.station !== '' && end.station !== '') {
-        const response = await ptxAPI.get(
+        const response = await ptxAPI.get<Array<DailyTimetableType>>(
             '/Rail/TRA/DailyTimetable/OD/' +
               `${start.station}/to/${end.station}/${dateFromat}?$format=JSON`,
         );
-        console.log(response.data);
+        setDailyTimetable(response.data);
       }
     })();
   }, [start, end]);
@@ -100,6 +103,7 @@ function Railway(): JSX.Element {
           />
         </div>
       </div>
+      <DailyTimetable dailyTimetable={dailyTimetable} />
     </div>
   );
 }
