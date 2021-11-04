@@ -27,7 +27,7 @@ function SelectCity({selectCity, handleChange}: SelectCityProp): JSX.Element {
         value={selectCity}
         label="縣市"
         onChange={handleChange}
-        sx={{color: '#c5c3c3'}}
+        sx={{color: '#e9e7e7'}}
       >
         <MenuItem
           value={'all'}

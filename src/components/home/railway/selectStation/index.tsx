@@ -37,7 +37,7 @@ function SelectStation(
         value={selectStation}
         label="車站"
         onChange={handleChange}
-        sx={{color: '#c5c3c3'}}
+        sx={{color: '#e9e7e7'}}
       >
         {
           stations.map((station: Station) => {

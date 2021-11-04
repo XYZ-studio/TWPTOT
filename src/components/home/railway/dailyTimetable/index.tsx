@@ -22,10 +22,11 @@ function DailyTimetable({dailyTimetable}: DailyTimetableProp): JSX.Element {
     <TableContainer
       component={Paper}
       className="daily-time-table"
+      style={{backgroundColor: '#41414b'}}
     >
       <Table aria-label="simple table">
         <TableHead>
-          <TableRow>
+          <TableRow className="dailytime">
             <TableCell>車種車次 (始發站 → 終點站)</TableCell>
           </TableRow>
         </TableHead>
