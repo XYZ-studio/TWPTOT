@@ -17,6 +17,12 @@ function DailyTime({dailyTime}: DailyTimeProp): JSX.Element {
         {dailyTime.DailyTrainInfo.TrainNo}
       </TableCell>
       <TableCell>
+        {dailyTime.OriginStopTime.ArrivalTime}
+      </TableCell>
+      <TableCell>
+        {dailyTime.DestinationStopTime.ArrivalTime}
+      </TableCell>
+      <TableCell>
         {dailyTime.DailyTrainInfo.StartingStationName.Zh_tw}
       </TableCell>
       <TableCell>

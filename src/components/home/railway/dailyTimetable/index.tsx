@@ -26,6 +26,10 @@ function DailyTimetable({dailyTimetable}: DailyTimetableProp): JSX.Element {
         <TableHead>
           <TableRow>
             <TableCell>車種車次 (始發站 → 終點站)</TableCell>
+            <TableCell>到站時間</TableCell>
+            <TableCell>抵達時間</TableCell>
+            <TableCell>始發站</TableCell>
+            <TableCell>終點站</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
