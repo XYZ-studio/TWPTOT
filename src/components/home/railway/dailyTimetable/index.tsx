@@ -14,6 +14,7 @@ interface DailyTimetableProp {
   dailyTimetable: Array<DailyTimetableType>
 }
 /**
+ * 車次資訊
  * @return {JSX.Element}
 **/
 function DailyTimetable({dailyTimetable}: DailyTimetableProp): JSX.Element {

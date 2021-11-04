@@ -11,6 +11,7 @@ interface SelectCityProp {
 }
 
 /**
+ * 選取城市
  * @return {JSX.Element}
 **/
 function SelectCity({selectCity, handleChange}: SelectCityProp): JSX.Element {
