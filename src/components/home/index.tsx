@@ -37,26 +37,31 @@ function Home(): JSX.Element {
       >
         <Tab
           label={<FontAwesomeIcon icon={faBus} />}
+          className="index_menu"
           value="bus" sx={{color: '#c5c3c3'}}
         />
         <Tab
           label={<FontAwesomeIcon icon={faTrain} />}
           value="railway"
+          className='index_menu'
           sx={{color: '#c5c3c3'}}
         />
         <Tab
           label={<img src={HSR} />}
           value="thsrc"
+          className='index_menu'
           sx={{color: '#c5c3c3'}}
         />
         <Tab
           label={<FontAwesomeIcon icon={faMapMarkerAlt} />}
           value="directions"
+          className='index_menu'
           sx={{color: '#c5c3c3'}}
         />
         <Tab
           label={<FontAwesomeIcon icon={faSubway} />}
           value="routemap"
+          className="index_menu"
           sx={{color: '#c5c3c3'}}
         />
       </Tabs>
