@@ -42,15 +42,15 @@ function SelectStation(
           railwayStations.map((station: Station) => {
             return selectCity === 'all' ? (
               <MenuItem
-                value={station.StationName.En}
-                key={station.StationName.En}
+                value={station.StationID}
+                key={station.StationID}
               >
                 {station.StationName.Zh_tw}
               </MenuItem>
             ) : station.LocationCityCode === selectCity ? (
               <MenuItem
-                value={station.StationName.En}
-                key={station.StationName.En}
+                value={station.StationID}
+                key={station.StationID}
               >
                 {station.StationName.Zh_tw}
               </MenuItem>

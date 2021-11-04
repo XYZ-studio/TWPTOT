@@ -19,7 +19,7 @@ import './home.sass';
  * @return {JSX.Element}
 **/
 function Home(): JSX.Element {
-  const [table, setTable] = useState('search');
+  const [table, setTable] = useState('bus');
   const tableChange = (_: SyntheticEvent, newValue: string) => {
     setTable(newValue);
   };

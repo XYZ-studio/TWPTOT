@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import dateFormat from 'dateformat';
 import {SelectChangeEvent} from '@mui/material/Select';
 import {faLongArrowAltDown} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -45,24 +46,39 @@ function Railway(): JSX.Element {
         await ptxAPI.get<Array<Station>>('/Rail/TRA/Station?$format=JSON');
       const data = response.data;
       setRailwayStation(data);
-      railwayStation;
     })();
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      const date = new Date();
+      const dateFromat = dateFormat(date, 'yyyy-MM-dd');
+      if (start.station !== '' && end.station !== '') {
+        const response = await ptxAPI.get(
+            '/Rail/TRA/DailyTimetable/OD/' +
+              `${start.station}/to/${end.station}/${dateFromat}?$format=JSON`,
+        );
+        console.log(response.data);
+      }
+    })();
+  }, [start, end]);
 
   return (
     <div id="railway">
       <div id="search">
         <h2>查詢班次</h2>
-        <SelectCity
-          selectCity={start.city}
-          handleChange={startHandleChange('city')}
-        />
-        <SelectStation
-          selectCity={start.city}
-          railwayStations={railwayStation}
-          selectStation={start.station}
-          handleChange={startHandleChange('station')}
-        />
+        <div className="select">
+          <SelectCity
+            selectCity={start.city}
+            handleChange={startHandleChange('city')}
+          />
+          <SelectStation
+            selectCity={start.city}
+            railwayStations={railwayStation}
+            selectStation={start.station}
+            handleChange={startHandleChange('station')}
+          />
+        </div>
         <span style={{
           display: 'block',
           textAlign: 'center',
@@ -71,16 +87,18 @@ function Railway(): JSX.Element {
         }}>
           <FontAwesomeIcon icon={faLongArrowAltDown} />
         </span>
-        <SelectCity
-          selectCity={end.city}
-          handleChange={endHandleChange('city')}
-        />
-        <SelectStation
-          selectCity={end.city}
-          railwayStations={railwayStation}
-          selectStation={end.station}
-          handleChange={endHandleChange('station')}
-        />
+        <div className="select">
+          <SelectCity
+            selectCity={end.city}
+            handleChange={endHandleChange('city')}
+          />
+          <SelectStation
+            selectCity={end.city}
+            railwayStations={railwayStation}
+            selectStation={end.station}
+            handleChange={endHandleChange('station')}
+          />
+        </div>
       </div>
     </div>
   );
