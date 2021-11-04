@@ -1,6 +1,14 @@
 import React from 'react';
 import DailyTime from './dailytime';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TableContainer from '@mui/material/TableContainer';
+import Paper from '@mui/material/Paper';
 import {DailyTimetableType} from '../../data/Station';
+import './dailyTimeTable.sass';
 
 interface DailyTimetableProp {
   dailyTimetable: Array<DailyTimetableType>
@@ -10,18 +18,28 @@ interface DailyTimetableProp {
 **/
 function DailyTimetable({dailyTimetable}: DailyTimetableProp): JSX.Element {
   return (
-    <table>
-      <tbody>
-        {dailyTimetable.map((dailyTime) => {
-          return (
-            <DailyTime
-              key={dailyTime.DailyTrainInfo.TrainNo}
-              dailyTime={dailyTime}
-            />
-          );
-        })}
-      </tbody>
-    </table>
+    <TableContainer
+      component={Paper}
+      className="daily-time-table"
+    >
+      <Table aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>車種車次 (始發站 → 終點站)</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {dailyTimetable.map((dailyTime) => {
+            return (
+              <DailyTime
+                key={dailyTime.DailyTrainInfo.TrainNo}
+                dailyTime={dailyTime}
+              />
+            );
+          })}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
 
