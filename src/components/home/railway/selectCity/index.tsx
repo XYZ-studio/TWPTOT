@@ -28,6 +28,11 @@ function SelectCity({selectCity, handleChange}: SelectCityProp): JSX.Element {
         onChange={handleChange}
         sx={{color: '#c5c3c3'}}
       >
+        <MenuItem
+          value={'all'}
+        >
+          全部
+        </MenuItem>
         {
           CityList.map((city: CityListType) => {
             return (
@@ -35,7 +40,8 @@ function SelectCity({selectCity, handleChange}: SelectCityProp): JSX.Element {
                 value={city}
                 key={city}
               >
-                {city === '' ? null : City[city]}
+
+                {city === 'all' ? '' : City[city]}
               </MenuItem>
             );
           })
