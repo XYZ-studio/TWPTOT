@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import DailyTime from './dailytime';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -6,7 +6,6 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableContainer from '@mui/material/TableContainer';
-import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
 import {DailyTimetableType} from '../../data/Station';
 import './dailyTimeTable.sass';
@@ -19,18 +18,6 @@ interface DailyTimetableProp {
  * @return {JSX.Element}
 **/
 function DailyTimetable({dailyTimetable}: DailyTimetableProp): JSX.Element {
-  const [page, setPage] = useState(0);
-  const [rows, setRows] = useState(10);
-
-  const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRows = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRows(+event.target.value);
-    setPage(0);
-  };
-
   return (
     <Paper
       sx={{overflow: 'hidden'}}
@@ -41,7 +28,9 @@ function DailyTimetable({dailyTimetable}: DailyTimetableProp): JSX.Element {
         sx={{maxHeight: 440}}
         // style={{backgroundColor: '#41414b'}}
       >
-        <Table aria-label="simple table" stickyHeader>
+        <Table aria-label="simple table" stickyHeader
+          sx={{minWidth: 750}}
+        >
           <TableHead>
             <TableRow className="dailytime">
               <TableCell>車種車次 (始發站 → 終點站)</TableCell>
@@ -63,17 +52,6 @@ function DailyTimetable({dailyTimetable}: DailyTimetableProp): JSX.Element {
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 20, 30]}
-        component="div"
-        count={rows}
-        rowsPerPage={rows}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRows}
-      >
-
-      </TablePagination>
     </Paper>
 
   );
