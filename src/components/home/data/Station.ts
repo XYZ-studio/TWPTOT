@@ -1,4 +1,4 @@
-interface StationName {
+interface Name {
   // eslint-disable-next-line camelcase
   Zh_tw: string;
   En: string;
@@ -14,7 +14,7 @@ export interface Station {
   StationUID: string;
   StationID: string;
   StationCode: string;
-  StationName: StationName;
+  StationName: Name;
   StationAddress: string;
   StationPhone: string;
   OperatorID: string;
@@ -29,18 +29,18 @@ export interface Station {
 }
 
 export interface StopTime {
-  StationName: StationName;
+  StationName: Name;
   ArrivalTime: string;
 }
 
 export interface DailyTrainInfo {
   TrainNo: string;
   StartingStationID: string;
-  StartingStationName: StationName;
+  StartingStationName: Name;
   EndingStationID: string;
-  EndingStationName: StationName;
-  TrainTypeName: string;
-  Note: string;
+  EndingStationName: Name;
+  TrainTypeName: Name;
+  Note: Name;
 }
 
 export interface DailyTimetableType {

@@ -11,10 +11,12 @@ interface DailyTimeProp {
  * @return {JSX.Element}
 **/
 function DailyTime({dailyTime}: DailyTimeProp): JSX.Element {
+  const info = dailyTime.DailyTrainInfo;
   return (
     <TableRow className="dailytime">
       <TableCell>
-        {dailyTime.DailyTrainInfo.TrainNo}
+        {`${info.TrainTypeName.Zh_tw}${info.TrainNo}` +
+          `(${info.StartingStationName.Zh_tw}→${info.EndingStationName.Zh_tw})`}
       </TableCell>
       <TableCell>
         {dailyTime.OriginStopTime.ArrivalTime}
@@ -23,10 +25,7 @@ function DailyTime({dailyTime}: DailyTimeProp): JSX.Element {
         {dailyTime.DestinationStopTime.ArrivalTime}
       </TableCell>
       <TableCell>
-        {dailyTime.DailyTrainInfo.StartingStationName.Zh_tw}
-      </TableCell>
-      <TableCell>
-        {dailyTime.DailyTrainInfo.EndingStationName.Zh_tw}
+        {info.Note.Zh_tw}
       </TableCell>
     </TableRow>
   );

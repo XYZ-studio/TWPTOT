@@ -25,19 +25,18 @@ function DailyTimetable({dailyTimetable}: DailyTimetableProp): JSX.Element {
     >
       <TableContainer
         component={Paper}
-        sx={{maxHeight: 440}}
+        sx={{maxHeight: 'calc(100vh - 390px)'}}
         // style={{backgroundColor: '#41414b'}}
       >
         <Table aria-label="simple table" stickyHeader
-          sx={{minWidth: 750}}
+          sx={{minWidth: 640}}
         >
           <TableHead>
             <TableRow className="dailytime">
               <TableCell>車種車次 (始發站 → 終點站)</TableCell>
               <TableCell>到站時間</TableCell>
               <TableCell>抵達時間</TableCell>
-              <TableCell>始發站</TableCell>
-              <TableCell>終點站</TableCell>
+              <TableCell>備註</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
