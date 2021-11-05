@@ -87,7 +87,7 @@ function Railway(): JSX.Element {
           display: 'block',
           textAlign: 'center',
           fontSize: '30px',
-          color: '#ffff',
+          color: 'rgba(0, 0, 0, 0.87)',
         }}>
           <FontAwesomeIcon icon={faLongArrowAltDown} />
         </span>
