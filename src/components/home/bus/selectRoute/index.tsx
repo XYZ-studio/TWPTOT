@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, ChangeEvent} from 'react';
 import {ptxAPI} from '../../api/ptx';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
+import SearchBox from './search';
 import {citys} from '../../data/City';
 import {BusInfo} from '../../data/Bus';
 
@@ -24,6 +25,12 @@ interface BusRouteProp {
 **/
 function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
   const [busRouteInfo, setBusRouteInfo] = useState<Array<BusInfo>>([]);
+  const [searchString, setSearchString] = useState('');
+
+  const handleChangeSearch = (event: ChangeEvent) => {
+    setSearchString((event.target as HTMLInputElement).value);
+  };
+
   useEffect(() => {
     (async () => {
       const response =
@@ -52,11 +59,16 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
           >
             {citys[city as keyof typeof citys]}
           </Typography>
+          <Typography>
+            <SearchBox
+              onChange={handleChangeSearch}
+            />
+          </Typography>
         </Toolbar>
       </AppBar>
       <List>
         {busRouteInfo.map((busInfo: BusInfo) => {
-          return (
+          return new RegExp(searchString).test(busInfo.RouteName.Zh_tw) ? (
             <ListItem key={busInfo.RouteID}>
               <Card sx={{width: '100%'}}>
                 <CardContent>
@@ -70,7 +82,7 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
                 </CardActions>
               </Card>
             </ListItem>
-          );
+          ) : null;
         })}
       </List>
     </div>
