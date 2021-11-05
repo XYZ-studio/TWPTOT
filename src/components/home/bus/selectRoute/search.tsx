@@ -1,7 +1,6 @@
 import React from 'react';
 import {styled, alpha} from '@mui/material/styles';
 import {InputBaseProps} from '@material-ui/core';
-import {MUIStyledCommonProps, Theme} from '@mui/system';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 
@@ -53,7 +52,7 @@ const StyledInputBase = styled(InputBase)(({theme}) => ({
  * @return {JSX.Element}
 **/
 function SearchBox(
-    props: InputBaseProps & MUIStyledCommonProps<Theme>,
+    props: InputBaseProps,
 ): JSX.Element {
   return (
     <Search>
@@ -63,7 +62,7 @@ function SearchBox(
       <StyledInputBase
         placeholder="Search…"
         inputProps={{'aria-label': 'search'}}
-        {...props}
+        onChange={props.onChange}
       />
     </Search>
   );
