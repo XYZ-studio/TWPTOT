@@ -20,16 +20,16 @@ import './home.sass';
  * @return {JSX.Element}
 **/
 function Home(): JSX.Element {
-  const [table, setTable] = useState('bus');
-  const tableChange = (_: SyntheticEvent, newValue: string) => {
-    setTable(newValue);
+  const [navigation, setNavigation] = useState('bus');
+  const navigationChange = (_: SyntheticEvent, newValue: string) => {
+    setNavigation(newValue);
   };
 
   return (
     <div id="home">
       <BottomNavigation
-        value={table}
-        onChange={tableChange}
+        value={navigation}
+        onChange={navigationChange}
         id="menu"
       >
         <BottomNavigationAction
@@ -68,16 +68,16 @@ function Home(): JSX.Element {
         />
       </BottomNavigation>
       <div id="content">
-        <TabPanel value={table} index="routemap">
+        <TabPanel value={navigation} index="routemap">
           <RouteMap />
         </TabPanel>
-        <TabPanel value={table} index="thsrc">
+        <TabPanel value={navigation} index="thsrc">
           <Thsrc />
         </TabPanel>
-        <TabPanel value={table} index="railway">
+        <TabPanel value={navigation} index="railway">
           <Railway />
         </TabPanel>
-        <TabPanel value={table} index="bus">
+        <TabPanel value={navigation} index="bus">
           <Bus />
         </TabPanel>
       </div>
