@@ -1,8 +1,4 @@
-interface Name {
-  // eslint-disable-next-line camelcase
-  Zh_tw: string;
-  En: string;
-}
+import {Name} from './Name';
 
 interface StationPosition {
   PositionLon: number;
