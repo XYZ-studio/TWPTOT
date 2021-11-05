@@ -14,6 +14,7 @@ interface DailyTimetableProp {
   dailyTimetable: Array<DailyTimetableType>
 }
 /**
+ * 車次資訊
  * @return {JSX.Element}
 **/
 function DailyTimetable({dailyTimetable}: DailyTimetableProp): JSX.Element {
@@ -21,10 +22,11 @@ function DailyTimetable({dailyTimetable}: DailyTimetableProp): JSX.Element {
     <TableContainer
       component={Paper}
       className="daily-time-table"
+      style={{backgroundColor: '#41414b'}}
     >
       <Table aria-label="simple table">
         <TableHead>
-          <TableRow>
+          <TableRow className="dailytime">
             <TableCell>車種車次 (始發站 → 終點站)</TableCell>
             <TableCell>到站時間</TableCell>
             <TableCell>抵達時間</TableCell>

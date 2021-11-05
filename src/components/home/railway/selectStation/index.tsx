@@ -8,18 +8,19 @@ import {CityListType} from '../../data/City';
 import {Station} from '../../data/Station';
 
 interface SelectStation {
-  selectCity: CityListType;
+  selectCity?: CityListType;
   selectStation: string;
-  railwayStations: Array<Station>;
+  stations: Array<Station>;
   handleChange: (event: SelectChangeEvent) => void;
 }
 /**
+ * 選取車站
  * @return {JSX.Element}
 **/
 function SelectStation(
     {
-      selectCity,
-      railwayStations,
+      selectCity = 'all',
+      stations,
       selectStation,
       handleChange,
     }: SelectStation,
@@ -36,10 +37,10 @@ function SelectStation(
         value={selectStation}
         label="車站"
         onChange={handleChange}
-        sx={{color: '#c5c3c3'}}
+        sx={{color: '#e9e7e7'}}
       >
         {
-          railwayStations.map((station: Station) => {
+          stations.map((station: Station) => {
             return selectCity === 'all' ? (
               <MenuItem
                 value={station.StationID}

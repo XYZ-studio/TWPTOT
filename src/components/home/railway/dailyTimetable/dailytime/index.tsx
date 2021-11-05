@@ -2,7 +2,7 @@ import React from 'react';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import {DailyTimetableType} from '../../../data/Station';
-
+import './dailytime.sass';
 interface DailyTimeProp {
   dailyTime: DailyTimetableType;
 }
@@ -12,7 +12,7 @@ interface DailyTimeProp {
 **/
 function DailyTime({dailyTime}: DailyTimeProp): JSX.Element {
   return (
-    <TableRow>
+    <TableRow className="dailytime">
       <TableCell>
         {dailyTime.DailyTrainInfo.TrainNo}
       </TableCell>

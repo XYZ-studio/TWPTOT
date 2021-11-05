@@ -16,6 +16,7 @@ interface SelectData {
   station: string;
 }
 /**
+ * 臺鐵查詢頁面
  * @return {JSX.Element}
 **/
 function Railway(): JSX.Element {
@@ -77,7 +78,7 @@ function Railway(): JSX.Element {
           />
           <SelectStation
             selectCity={start.city}
-            railwayStations={railwayStation}
+            stations={railwayStation}
             selectStation={start.station}
             handleChange={startHandleChange('station')}
           />
@@ -97,13 +98,15 @@ function Railway(): JSX.Element {
           />
           <SelectStation
             selectCity={end.city}
-            railwayStations={railwayStation}
+            stations={railwayStation}
             selectStation={end.station}
             handleChange={endHandleChange('station')}
           />
         </div>
       </div>
-      <DailyTimetable dailyTimetable={dailyTimetable} />
+      {dailyTimetable.length === 0 ? null : (
+        <DailyTimetable dailyTimetable={dailyTimetable} />
+      )}
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import './rick.sass';
 
 /**
+ * 你被Rick了
  * @return{JSX.Element}
 **/
 function Rick(): JSX.Element {
