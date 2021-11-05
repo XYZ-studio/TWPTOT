@@ -29,7 +29,7 @@ function SelectStation(
     <FormControl style={{width: '150px'}}>
       <InputLabel
         id="demo-simple-select-label"
-        style={{color: '#ffff'}}
+        // style={{color: '#ffff'}}
       >車站</InputLabel>
       <Select
         labelId="demo-simple-select-label"
@@ -37,7 +37,7 @@ function SelectStation(
         value={selectStation}
         label="車站"
         onChange={handleChange}
-        sx={{color: '#e9e7e7'}}
+        // sx={{color: '#e9e7e7'}}
       >
         {
           stations.map((station: Station) => {

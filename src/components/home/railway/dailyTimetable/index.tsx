@@ -19,33 +19,41 @@ interface DailyTimetableProp {
 **/
 function DailyTimetable({dailyTimetable}: DailyTimetableProp): JSX.Element {
   return (
-    <TableContainer
-      component={Paper}
+    <Paper
+      sx={{overflow: 'hidden'}}
       className="daily-time-table"
-      style={{backgroundColor: '#41414b'}}
     >
-      <Table aria-label="simple table">
-        <TableHead>
-          <TableRow className="dailytime">
-            <TableCell>車種車次 (始發站 → 終點站)</TableCell>
-            <TableCell>到站時間</TableCell>
-            <TableCell>抵達時間</TableCell>
-            <TableCell>始發站</TableCell>
-            <TableCell>終點站</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {dailyTimetable.map((dailyTime) => {
-            return (
-              <DailyTime
-                key={dailyTime.DailyTrainInfo.TrainNo}
-                dailyTime={dailyTime}
-              />
-            );
-          })}
-        </TableBody>
-      </Table>
-    </TableContainer>
+      <TableContainer
+        component={Paper}
+        sx={{maxHeight: 440}}
+        // style={{backgroundColor: '#41414b'}}
+      >
+        <Table aria-label="simple table" stickyHeader
+          sx={{minWidth: 750}}
+        >
+          <TableHead>
+            <TableRow className="dailytime">
+              <TableCell>車種車次 (始發站 → 終點站)</TableCell>
+              <TableCell>到站時間</TableCell>
+              <TableCell>抵達時間</TableCell>
+              <TableCell>始發站</TableCell>
+              <TableCell>終點站</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {dailyTimetable.map((dailyTime) => {
+              return (
+                <DailyTime
+                  key={dailyTime.DailyTrainInfo.TrainNo}
+                  dailyTime={dailyTime}
+                />
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Paper>
+
   );
 }
 
