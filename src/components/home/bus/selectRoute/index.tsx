@@ -17,6 +17,7 @@ interface BusRouteProp {
   city: string;
   setCity: (value: React.SetStateAction<string>) => void
 }
+
 /**
  * Bus route select component
  * @return {JSX.Element}
