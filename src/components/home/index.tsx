@@ -1,6 +1,6 @@
 import React, {useState, SyntheticEvent} from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import {
   faBus,
   faSubway,
@@ -27,45 +27,46 @@ function Home(): JSX.Element {
 
   return (
     <div id="home">
-      <Tabs
+      <BottomNavigation
         value={table}
         onChange={tableChange}
-        variant="fullWidth"
-        selectionFollowsFocus={true}
-        allowScrollButtonsMobile
-        scrollButtons
         id="menu"
       >
-        <Tab
-          label={<FontAwesomeIcon icon={faBus} />}
+        <BottomNavigationAction
+          icon={<FontAwesomeIcon icon={faBus} />}
+          label="公車"
           className="index_menu"
           value="bus" sx={{color: '#c5c3c3'}}
         />
-        <Tab
-          label={<FontAwesomeIcon icon={faTrain} />}
+        <BottomNavigationAction
+          icon={<FontAwesomeIcon icon={faTrain} />}
+          label="臺鐵"
           value="railway"
           className='index_menu'
           sx={{color: '#c5c3c3'}}
         />
-        <Tab
-          label={<img src={HSR} />}
+        <BottomNavigationAction
+          icon={<img src={HSR} />}
+          label="高鐵"
           value="thsrc"
           className='index_menu'
           sx={{color: '#c5c3c3'}}
         />
-        <Tab
-          label={<FontAwesomeIcon icon={faMapMarkerAlt} />}
+        <BottomNavigationAction
+          icon={<FontAwesomeIcon icon={faMapMarkerAlt} />}
+          label="路線規劃"
           value="directions"
           className='index_menu'
           sx={{color: '#c5c3c3'}}
         />
-        <Tab
-          label={<FontAwesomeIcon icon={faSubway} />}
+        <BottomNavigationAction
+          icon={<FontAwesomeIcon icon={faSubway} />}
+          label="捷運"
           value="routemap"
           className="index_menu"
           sx={{color: '#c5c3c3'}}
         />
-      </Tabs>
+      </BottomNavigation>
       <div id="content">
         <TabPanel value={table} index="routemap">
           <RouteMap />

@@ -1,16 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
+import BusRoute from './selectRoute';
 import {citys} from '../data/City';
 
 /**
+ * Bus component
  * @return {JSX.Element}
 **/
 function Bus(): JSX.Element {
-  return (
+  const [city, setCity] = useState('');
+  const handleChangeCity = (city: string) => {
+    return () => {
+      setCity(city);
+    };
+  };
+
+  return city === '' ? (
     <Stack
       direction="row"
-      // spacing={1}
       padding={'50px'}
       flexWrap={'wrap'}
       justifyContent={'space-around'}
@@ -22,14 +30,17 @@ function Bus(): JSX.Element {
             style={{
               margin: '8px',
               fontSize: '20px',
-              padding: '15px',
+              padding: '20px',
             }}
+            onClick={handleChangeCity(city)}
           >
             {citys[city as keyof typeof citys]}
           </Paper>
         );
       })}
     </Stack>
+  ) : (
+    <BusRoute city={city} setCity={setCity} />
   );
 }
 
