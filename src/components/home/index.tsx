@@ -13,6 +13,7 @@ import TabPanel from './TabPanel';
 import RouteMap from './routemap';
 import Thsrc from './thsrc';
 import Railway from './railway';
+import Bus from './bus';
 import './home.sass';
 
 /**
@@ -74,6 +75,9 @@ function Home(): JSX.Element {
         </TabPanel>
         <TabPanel value={table} index="railway">
           <Railway />
+        </TabPanel>
+        <TabPanel value={table} index="bus">
+          <Bus />
         </TabPanel>
       </div>
     </div>

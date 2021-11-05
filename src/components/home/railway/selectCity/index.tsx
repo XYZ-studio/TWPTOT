@@ -19,7 +19,7 @@ function SelectCity({selectCity, handleChange}: SelectCityProp): JSX.Element {
     <FormControl style={{width: '150px'}}>
       <InputLabel
         id="demo-simple-select-label"
-        style={{color: '#ffff'}}
+        // style={{color: '#ffff'}}
       >縣市</InputLabel>
       <Select
         labelId="demo-simple-select-label"
@@ -27,7 +27,7 @@ function SelectCity({selectCity, handleChange}: SelectCityProp): JSX.Element {
         value={selectCity}
         label="縣市"
         onChange={handleChange}
-        sx={{color: '#e9e7e7'}}
+        // sx={{color: '#e9e7e7'}}
       >
         <MenuItem
           value={'all'}
