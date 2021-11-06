@@ -4,6 +4,8 @@ env:
 extends:
   - plugin:react/recommended
   - google
+  - plugin:@typescript-eslint/eslint-recommended
+  - plugin:@typescript-eslint/recommended
 parser: '@typescript-eslint/parser'
 parserOptions:
   ecmaFeatures:
@@ -13,6 +15,7 @@ parserOptions:
 plugins:
   - react
   - '@typescript-eslint'
+  - typescript
 rules: {
   linebreak-style: 0
 }
