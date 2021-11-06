@@ -8,7 +8,7 @@ import {
   faTrain,
 } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import HSR from './svg/hsr.svg';
+import HSR from './svg/hsr';
 import TabPanel from './TabPanel';
 import RouteMap from './routemap';
 import Thsrc from './thsrc';
@@ -46,7 +46,7 @@ function Home(): JSX.Element {
           sx={{color: '#c5c3c3'}}
         />
         <BottomNavigationAction
-          icon={<img src={HSR} />}
+          icon={<HSR />}
           label="高鐵"
           value="thsrc"
           className='index_menu'
