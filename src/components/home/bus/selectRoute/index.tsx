@@ -46,6 +46,10 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
       <AppBar id="bus-header" position="sticky">
         <Toolbar>
           <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            sx={{mr: 2}}
             onClick={() => {
               setCity('');
             }}
@@ -55,6 +59,7 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
           <Typography
             variant="h6"
             component="div"
+            noWrap
             sx={{flexGrow: 1}}
           >
             {citys[city as keyof typeof citys]}
