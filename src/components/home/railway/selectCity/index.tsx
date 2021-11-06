@@ -10,6 +10,14 @@ interface SelectCityProp {
   handleChange: (event: SelectChangeEvent) => void
 }
 
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: '440px',
+    },
+  },
+};
+
 /**
  * 選取城市
  * @return {JSX.Element}
@@ -27,7 +35,7 @@ function SelectCity({selectCity, handleChange}: SelectCityProp): JSX.Element {
         value={selectCity}
         label="縣市"
         onChange={handleChange}
-        // sx={{color: '#e9e7e7'}}
+        MenuProps={MenuProps}
       >
         <MenuItem
           value={'all'}

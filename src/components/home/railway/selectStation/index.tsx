@@ -13,6 +13,15 @@ interface SelectStation {
   stations: Array<Station>;
   handleChange: (event: SelectChangeEvent) => void;
 }
+
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: '440px',
+    },
+  },
+};
+
 /**
  * 選取車站
  * @return {JSX.Element}
@@ -37,7 +46,7 @@ function SelectStation(
         value={selectStation}
         label="車站"
         onChange={handleChange}
-        // sx={{color: '#e9e7e7'}}
+        MenuProps={MenuProps}
       >
         {
           stations.map((station: Station) => {
