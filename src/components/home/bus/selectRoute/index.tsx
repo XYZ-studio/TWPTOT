@@ -89,28 +89,30 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
           ) : null}
         </Toolbar>
       </AppBar>
-      {bus !== '' ? (<Route name={bus} city={city}/>) :<List>
-        {busRouteInfo.map((busInfo: BusInfo) => {
-          return new RegExp(searchString).test(busInfo.RouteName.Zh_tw) ? (
-            <ListItem
-              key={busInfo.RouteID}
-              onClick={handleChangeBus(busInfo.RouteName.Zh_tw)}
-            >
-              <Card sx={{width: '100%'}}>
-                <CardContent>
-                  <Typography variant="h5" component="div">
-                    {busInfo.RouteName.Zh_tw}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  {busInfo.DepartureStopNameZh + ' - ' +
-                    busInfo.DestinationStopNameZh}
-                </CardActions>
-              </Card>
-            </ListItem>
-          ) : null;
-        })}
-      </List>}
+      {bus !== '' ? (<Route name={bus} city={city}/>) : (
+        <List>
+          {busRouteInfo.map((busInfo: BusInfo) => {
+            return new RegExp(searchString).test(busInfo.RouteName.Zh_tw) ? (
+              <ListItem
+                key={busInfo.RouteID}
+                onClick={handleChangeBus(busInfo.RouteName.Zh_tw)}
+              >
+                <Card sx={{width: '100%'}}>
+                  <CardContent>
+                    <Typography variant="h5" component="div">
+                      {busInfo.RouteName.Zh_tw}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    {busInfo.DepartureStopNameZh + ' - ' +
+                      busInfo.DestinationStopNameZh}
+                  </CardActions>
+                </Card>
+              </ListItem>
+            ) : null;
+          })}
+        </List>
+      )}
     </div>
   );
 }

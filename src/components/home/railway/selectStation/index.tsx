@@ -17,7 +17,7 @@ interface SelectStation {
 const MenuProps = {
   PaperProps: {
     style: {
-      maxHeight: '440px',
+      maxHeight: '300px',
     },
   },
 };
