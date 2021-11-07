@@ -1,8 +1,20 @@
 import React, {useState} from 'react';
+import {styled} from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import BusRoute from './selectRoute';
 import {citys} from '../data/City';
+
+const CityPaper = styled(Paper)(() => ({
+  '&:hover': {
+    transform: 'scale(1.05)',
+  },
+  'margin': '8px',
+  'fontSize': '20px',
+  'padding': '20px',
+  'transition': 'all .5s',
+  'cursor': 'pointer',
+}));
 
 /**
  * Bus component
@@ -25,17 +37,12 @@ function Bus(): JSX.Element {
     >
       {Object.keys(citys).map((city: string) => {
         return (
-          <Paper
+          <CityPaper
             key={city}
-            style={{
-              margin: '8px',
-              fontSize: '20px',
-              padding: '20px',
-            }}
             onClick={handleChangeCity(city)}
           >
             {citys[city as keyof typeof citys]}
-          </Paper>
+          </CityPaper>
         );
       })}
     </Stack>

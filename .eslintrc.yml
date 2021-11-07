@@ -15,7 +15,6 @@ parserOptions:
 plugins:
   - react
   - '@typescript-eslint'
-  - typescript
 rules: {
   linebreak-style: 0
 }

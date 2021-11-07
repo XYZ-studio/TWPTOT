@@ -11,6 +11,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import SearchBox from './search';
+import Route from './route';
 import {citys} from '../../data/City';
 import {BusInfo} from '../../data/Bus';
 
@@ -26,9 +27,16 @@ interface BusRouteProp {
 function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
   const [busRouteInfo, setBusRouteInfo] = useState<Array<BusInfo>>([]);
   const [searchString, setSearchString] = useState('');
+  const [bus, setBus] = useState('');
 
   const handleChangeSearch = (event: ChangeEvent) => {
     setSearchString((event.target as HTMLInputElement).value);
+  };
+
+  const handleChangeBus = (name: string) => {
+    return () => {
+      setBus(name);
+    };
   };
 
   useEffect(() => {
@@ -41,6 +49,10 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
     })();
   }, [city]);
 
+  useEffect(() => {
+    console.log(bus);
+  }, [bus]);
+
   return (
     <div>
       <AppBar id="bus-header" position="sticky">
@@ -51,7 +63,11 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
             color="inherit"
             sx={{mr: 2}}
             onClick={() => {
-              setCity('');
+              if (bus === '') {
+                setCity('');
+              } else {
+                setBus('');
+              }
             }}
           >
             <ChevronLeftIcon />
@@ -62,19 +78,24 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
             noWrap
             sx={{flexGrow: 1}}
           >
-            {citys[city as keyof typeof citys]}
+            {bus === '' ? citys[city as keyof typeof citys] : bus}
           </Typography>
-          <Typography>
-            <SearchBox
-              onChange={handleChangeSearch}
-            />
-          </Typography>
+          {bus === '' ? (
+            <Typography>
+              <SearchBox
+                onChange={handleChangeSearch}
+              />
+            </Typography>
+          ) : null}
         </Toolbar>
       </AppBar>
-      <List>
+      {bus !== '' ? (<Route name={bus} city={city}/>) :<List>
         {busRouteInfo.map((busInfo: BusInfo) => {
           return new RegExp(searchString).test(busInfo.RouteName.Zh_tw) ? (
-            <ListItem key={busInfo.RouteID}>
+            <ListItem
+              key={busInfo.RouteID}
+              onClick={handleChangeBus(busInfo.RouteName.Zh_tw)}
+            >
               <Card sx={{width: '100%'}}>
                 <CardContent>
                   <Typography variant="h5" component="div">
@@ -89,7 +110,7 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
             </ListItem>
           ) : null;
         })}
-      </List>
+      </List>}
     </div>
   );
 }
