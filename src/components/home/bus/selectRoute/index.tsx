@@ -95,9 +95,15 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
             return new RegExp(searchString).test(busInfo.RouteName.Zh_tw) ? (
               <ListItem
                 key={busInfo.RouteID}
-                onClick={handleChangeBus(busInfo.RouteName.Zh_tw)}
+                style={{justifyContent: 'center'}}
               >
-                <Card sx={{width: '100%'}}>
+                <Card
+                  sx={{
+                    width: '100%',
+                    maxWidth: '600px',
+                  }}
+                  onClick={handleChangeBus(busInfo.RouteName.Zh_tw)}
+                >
                   <CardContent>
                     <Typography variant="h5" component="div">
                       {busInfo.RouteName.Zh_tw}

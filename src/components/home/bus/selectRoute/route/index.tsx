@@ -125,9 +125,13 @@ function Route({name, city}: RouteProp): JSX.Element {
               return (
                 <ListItem
                   key={stop.StopUID}
+                  style={{justifyContent: 'center'}}
                 >
                   <Card
-                    sx={{width: '100%'}}
+                    sx={{
+                      width: '100%',
+                      maxWidth: '600px',
+                    }}
                   >
                     <CardContent>
                       <Typography
