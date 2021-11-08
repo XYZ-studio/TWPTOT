@@ -20,13 +20,18 @@ interface SelectData {
  * @return {JSX.Element}
 **/
 function Railway(): JSX.Element {
+  // 所有車站資料
   const [railwayStation, setRailwayStation] = useState<Array<Station>>([]);
+  // 班次表
   const [dailyTimetable, setDailyTimetable] =
     useState<Array<DailyTimetableType>>([]);
+  // 用戶選取的起始站資料
   const [start, setStart] =
     useState<SelectData>({city: 'all', station: ''});
+  // 用戶選取的終點站資料
   const [end, setEnd] =
     useState<SelectData>({city: 'all', station: ''});
+  // 更新用戶選擇起始站資料到State
   const startHandleChange = (set: string) => {
     return (event: SelectChangeEvent) => {
       setStart({
@@ -35,6 +40,7 @@ function Railway(): JSX.Element {
       });
     };
   };
+  // 更新用戶選擇終點站資料到State
   const endHandleChange = (set: string) => {
     return (event: SelectChangeEvent) => {
       setEnd({
@@ -43,16 +49,17 @@ function Railway(): JSX.Element {
       });
     };
   };
-
+  // 渲染component時執行1次
   useEffect(() => {
     (async () => {
+      // 請求api取得所有車站資料
       const response =
         await ptxAPI.get<Array<Station>>('/Rail/TRA/Station?$format=JSON');
       const data = response.data;
       setRailwayStation(data);
     })();
   }, []);
-
+  // 當update staart and end state時執行
   useEffect(() => {
     (async () => {
       const date = new Date();

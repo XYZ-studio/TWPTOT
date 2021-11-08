@@ -93,14 +93,16 @@ function Route({name, city}: RouteProp): JSX.Element {
 
       setBusRouteInfo(busRouteResponse.data);
       setBusDisplayStopOfRoute(displayStopOfRouteResponse.data);
+      await updateBusEstimatedTimeOfArrivalData();
     })();
 
     const intervalID = setInterval(() => {
       updateBusEstimatedTimeOfArrivalData();
-      console.log('更新了哈哈');
+      console.log('update');
     }, 10000);
 
     return () => {
+      console.log(`clear interval ${intervalID}`);
       clearInterval(intervalID);
     };
   }, []);
