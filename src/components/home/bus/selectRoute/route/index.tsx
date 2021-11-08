@@ -6,8 +6,14 @@ import ListItem from '@mui/material/ListItem';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import CardActions from '@mui/material/CardActions';
 import {styled} from '@mui/material/styles';
-import {BusRouteInfo, BusDisplayStopOfRoute, BusStop} from '../../../data/Bus';
+import {
+  BusRouteInfo,
+  BusDisplayStopOfRoute,
+  BusStop,
+  BusEstimatedTimeOfArrival,
+} from '../../../data/Bus';
 import {ptxAPI} from '../../../api/ptx';
 
 interface RouteProp {
@@ -40,9 +46,31 @@ function Route({name, city}: RouteProp): JSX.Element {
     useState(0);
   const [busDisplayStopOfRoute, setBusDisplayStopOfRoute] =
     useState<BusDisplayStopOfRoute[]>([]);
+  const [busEstimatedTimeOfArrival, setBusEstimatedTimeOfArrival] =
+    useState<BusEstimatedTimeOfArrival[]>([]);
 
   const handleChangeSelectBusRoute = (_: SyntheticEvent, newValue: string) => {
     setSelectBusRoute(Number(newValue));
+  };
+
+  const getBusEstimatedTimeOfArrival = (
+      stopUID: string,
+  ): string => {
+    const stopEstimatedTimeOfArrivalData =
+      busEstimatedTimeOfArrival.find((value) => {
+        return value.StopUID === stopUID ? value : null;
+      });
+    const state = stopEstimatedTimeOfArrivalData?.StopStatus;
+    const time = stopEstimatedTimeOfArrivalData?.EstimateTime as number;
+    const estimeatedTime = (time / 60 > 1) ? `${Math.floor(time / 60)}分鐘` :
+      `${time}秒`;
+    return (state === 4) ? '今日未營運' : (
+      state === 3
+    ) ? '末班車已過' : (
+      state === 2
+    ) ? '交管不停靠' : (
+      state === 1
+    ) ? '尚未發車' : estimeatedTime;
   };
 
   useEffect(() => {
@@ -51,14 +79,18 @@ function Route({name, city}: RouteProp): JSX.Element {
       const busRouteResponse = await ptxAPI.get<Array<BusRouteInfo>>(
           `/Bus/Route/City/${city}/${name}?$format=JSON`,
       );
-
-      setBusRouteInfo(busRouteResponse.data);
       const displayStopOfRouteResponse =
         await ptxAPI.get<Array<BusDisplayStopOfRoute>>(
-            `/Bus/DisplayStopOfRoute/City/${city}/${name}`,
+            `/Bus/DisplayStopOfRoute/City/${city}/${name}?$format=JSON`,
         );
-      console.log(displayStopOfRouteResponse.data);
+      const busEstimatedTimeOfArrivalResponse =
+        await ptxAPI.get<Array<BusEstimatedTimeOfArrival>>(
+            `/Bus/EstimatedTimeOfArrival/City/${city}/${name}?$format=JSON`,
+        );
+
+      setBusRouteInfo(busRouteResponse.data);
       setBusDisplayStopOfRoute(displayStopOfRouteResponse.data);
+      setBusEstimatedTimeOfArrival(busEstimatedTimeOfArrivalResponse.data);
     })();
   }, []);
 
@@ -105,6 +137,9 @@ function Route({name, city}: RouteProp): JSX.Element {
                         {stop.StopName.Zh_tw}
                       </Typography>
                     </CardContent>
+                    <CardActions>
+                      {getBusEstimatedTimeOfArrival(stop.StopUID)}
+                    </CardActions>
                   </Card>
                 </ListItem>
               );

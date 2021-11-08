@@ -31,3 +31,10 @@ export interface BusDisplayStopOfRoute {
   RouteUID: string;
   Stops: Array<BusStop>;
 }
+
+export interface BusEstimatedTimeOfArrival {
+  StopUID: string;
+  StopName: Name;
+  EstimateTime: number;
+  StopStatus: number;
+}
