@@ -33,11 +33,7 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
     setSearchString((event.target as HTMLInputElement).value);
   };
 
-  const handleChangeBus = (name: string) => {
-    return () => {
-      setBus(name);
-    };
-  };
+  const handleChangeBus = (name: string) => () => setBus(name);
 
   useEffect(() => {
     (async () => {
@@ -49,10 +45,6 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
     })();
   }, [city]);
 
-  useEffect(() => {
-    console.log(bus);
-  }, [bus]);
-
   return (
     <div>
       <AppBar id="bus-header" position="sticky">
@@ -63,11 +55,7 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
             color="inherit"
             sx={{mr: 2}}
             onClick={() => {
-              if (bus === '') {
-                setCity('');
-              } else {
-                setBus('');
-              }
+              bus === '' ? setCity('') : setBus('');
             }}
           >
             <ChevronLeftIcon />
@@ -76,7 +64,7 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
             variant="h6"
             component="div"
             noWrap
-            sx={{flexGrow: 1}}
+            sx={{flexGrow: bus === '' ? 1 : 0}}
           >
             {bus === '' ? citys[city as keyof typeof citys] : bus}
           </Typography>

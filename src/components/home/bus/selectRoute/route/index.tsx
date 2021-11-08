@@ -55,7 +55,7 @@ function Route({name, city}: RouteProp): JSX.Element {
 
   const getBusEstimatedTimeOfArrival = (
       stopUID: string,
-  ): string => {
+  ): string[] => {
     const stopEstimatedTimeOfArrivalData =
       busEstimatedTimeOfArrival.find((value) => {
         return value.StopUID === stopUID ? value : null;
@@ -64,13 +64,16 @@ function Route({name, city}: RouteProp): JSX.Element {
     const time = stopEstimatedTimeOfArrivalData?.EstimateTime as number;
     const estimeatedTime = (time / 60 > 1) ? `${Math.floor(time / 60)}分鐘` :
       `${time}秒`;
-    return (state === 4) ? '今日未營運' : (
-      state === 3
-    ) ? '末班車已過' : (
-      state === 2
-    ) ? '交管不停靠' : (
-      state === 1
-    ) ? '尚未發車' : estimeatedTime;
+    const timeString = (state === 4) ? '今日未營運' : (
+        state === 3
+      ) ? '末班車已過' : (
+        state === 2
+      ) ? '交管不停靠' : (
+        state === 1
+      ) ? '尚未發車' : estimeatedTime;
+    const red = (time < 120) ? 100 : (time < 180) ? 200 : 255;
+    const backgroundColor = `rgb(${red}, 255, 255)`;
+    return [timeString, backgroundColor];
   };
 
   const updateBusEstimatedTimeOfArrivalData = async () => {
@@ -135,6 +138,8 @@ function Route({name, city}: RouteProp): JSX.Element {
             key={displayStopOfRoute.RouteUID}
           >
             {displayStopOfRoute.Stops.map((stop: BusStop) => {
+              const [time, backgroundColor] =
+                getBusEstimatedTimeOfArrival(stop.StopUID);
               return (
                 <ListItem
                   key={stop.StopUID}
@@ -144,6 +149,7 @@ function Route({name, city}: RouteProp): JSX.Element {
                     sx={{
                       width: '100%',
                       maxWidth: '600px',
+                      backgroundColor: backgroundColor,
                     }}
                   >
                     <CardContent>
@@ -155,7 +161,7 @@ function Route({name, city}: RouteProp): JSX.Element {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      {getBusEstimatedTimeOfArrival(stop.StopUID)}
+                      {time}
                     </CardActions>
                   </Card>
                 </ListItem>

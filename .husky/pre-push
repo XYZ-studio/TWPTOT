@@ -8,7 +8,6 @@ cd dist
 cp index.html 404.html
 git init
 git status
-# 記得改git
 git remote add gh-pages $giturl
 git checkout -b gh-pages
 git add --all
