@@ -2,6 +2,7 @@ import React from 'react';
 import {Switch, BrowserRouter as Router, Route} from 'react-router-dom';
 import Home from './components/home';
 import Rick from './components/rick';
+import Page404 from './components/page404';
 /**
  * @return{JSX.Element}
 **/
@@ -14,6 +15,9 @@ function App(): JSX.Element {
         </Route>
         <Route exact path="/rick">
           <Rick />
+        </Route>
+        <Route path="*">
+          <Page404 />
         </Route>
       </Switch>
     </Router>
