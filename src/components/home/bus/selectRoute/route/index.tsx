@@ -73,8 +73,15 @@ function Route({name, city}: RouteProp): JSX.Element {
     ) ? '尚未發車' : estimeatedTime;
   };
 
+  const updateBusEstimatedTimeOfArrivalData = async () => {
+    const busEstimatedTimeOfArrivalResponse =
+      await ptxAPI.get<Array<BusEstimatedTimeOfArrival>>(
+          `/Bus/EstimatedTimeOfArrival/City/${city}/${name}?$format=JSON`,
+      );
+    setBusEstimatedTimeOfArrival(busEstimatedTimeOfArrivalResponse.data);
+  };
+
   useEffect(() => {
-    console.log(name, city);
     (async () => {
       const busRouteResponse = await ptxAPI.get<Array<BusRouteInfo>>(
           `/Bus/Route/City/${city}/${name}?$format=JSON`,
@@ -83,15 +90,19 @@ function Route({name, city}: RouteProp): JSX.Element {
         await ptxAPI.get<Array<BusDisplayStopOfRoute>>(
             `/Bus/DisplayStopOfRoute/City/${city}/${name}?$format=JSON`,
         );
-      const busEstimatedTimeOfArrivalResponse =
-        await ptxAPI.get<Array<BusEstimatedTimeOfArrival>>(
-            `/Bus/EstimatedTimeOfArrival/City/${city}/${name}?$format=JSON`,
-        );
 
       setBusRouteInfo(busRouteResponse.data);
       setBusDisplayStopOfRoute(displayStopOfRouteResponse.data);
-      setBusEstimatedTimeOfArrival(busEstimatedTimeOfArrivalResponse.data);
     })();
+
+    const intervalID = setInterval(() => {
+      updateBusEstimatedTimeOfArrivalData();
+      console.log('更新了哈哈');
+    }, 10000);
+
+    return () => {
+      clearInterval(intervalID);
+    };
   }, []);
 
   return (
