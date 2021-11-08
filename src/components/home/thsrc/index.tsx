@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import dateFormat from 'dateformat';
 import {SelectChangeEvent} from '@mui/material/Select';
-import SelectStation from '../railway/selectStation';
+import SelectStation from '../thsrc/selectStation';
 import {ptxAPI} from '../api/ptx';
 import {Station} from '../data/Station';
 import './thsrc.sass';
