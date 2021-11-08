@@ -1,8 +1,14 @@
 import React, {SyntheticEvent, useEffect, useState} from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import CardActions from '@mui/material/CardActions';
 import {styled} from '@mui/material/styles';
-import {BusRouteInfo} from '../../../data/Bus';
+import {BusRouteInfo, BusDisplayStopOfRoute, BusStop} from '../../../data/Bus';
 import {ptxAPI} from '../../../api/ptx';
 
 interface RouteProp {
@@ -32,22 +38,28 @@ function Route({name, city}: RouteProp): JSX.Element {
   const [busRouteInfo, setBusRouteInfo] =
     useState<Array<BusRouteInfo>>([]);
   const [selectBusRoute, setSelectBusRoute] =
-    useState('');
+    useState(0);
+  const [busDisplayStopOfRoute, setBusDisplayStopOfRoute] =
+    useState<BusDisplayStopOfRoute[]>([]);
 
   const handleChangeSelectBusRoute = (_: SyntheticEvent, newValue: string) => {
-    setSelectBusRoute(newValue);
+    setSelectBusRoute(Number(newValue));
   };
 
   useEffect(() => {
     console.log(name, city);
     (async () => {
-      const response = await ptxAPI.get<Array<BusRouteInfo>>(
+      const busRouteResponse = await ptxAPI.get<Array<BusRouteInfo>>(
           `/Bus/Route/City/${city}/${name}?$format=JSON`,
       );
 
-      setBusRouteInfo(response.data);
-      console.log(response.data);
-      setSelectBusRoute(response.data[0].DepartureStopNameEn);
+      setBusRouteInfo(busRouteResponse.data);
+      const displayStopOfRouteResponse =
+        await ptxAPI.get<Array<BusDisplayStopOfRoute>>(
+            `/Bus/DisplayStopOfRoute/City/${city}/${name}`,
+        );
+      console.log(displayStopOfRouteResponse.data);
+      setBusDisplayStopOfRoute(displayStopOfRouteResponse.data);
     })();
   }, []);
 
@@ -61,16 +73,46 @@ function Route({name, city}: RouteProp): JSX.Element {
         {busRouteInfo.length !== 0 ? (
             <BusRouteTab
               label={`往 ${busRouteInfo[0].DepartureStopNameZh}`}
-              value={busRouteInfo[0].DepartureStopNameEn}
+              value={0}
             />
         ) : null}
         {busRouteInfo.length !== 0 ? (
             <BusRouteTab
               label={`往 ${busRouteInfo[0].DestinationStopNameZh}`}
-              value={busRouteInfo[0].DestinationStopNameEn}
+              value={1}
             />
         ) : null}
       </BusRouteTabs>
+      {busDisplayStopOfRoute.map((
+          displayStopOfRoute: BusDisplayStopOfRoute,
+      ) => {
+        return displayStopOfRoute.Direction === selectBusRoute ? (
+          <List
+            key={displayStopOfRoute.RouteUID}
+          >
+            {displayStopOfRoute.Stops.map((stop: BusStop) => {
+              return (
+                <ListItem
+                  key={stop.StopUID}
+                >
+                  <Card
+                    sx={{width: '100%'}}
+                  >
+                    <CardContent>
+                      <Typography
+                        variant="h5"
+                        component="div"
+                      >
+                        {stop.StopName.Zh_tw}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </ListItem>
+              );
+            })}
+          </List>
+        ) : null;
+      })}
     </div>
   );
 }

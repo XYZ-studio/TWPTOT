@@ -10,6 +10,7 @@ export interface BusInfo {
 
 export interface BusStop {
   StopName: Name;
+  StopUID: string;
 }
 
 export interface BusStopOfRoute {
@@ -23,4 +24,10 @@ export interface BusRouteInfo {
   DepartureStopNameEn: string;
   DestinationStopNameZh: string;
   DestinationStopNameEn: string;
+}
+
+export interface BusDisplayStopOfRoute {
+  Direction: number;
+  RouteUID: string;
+  Stops: Array<BusStop>;
 }
