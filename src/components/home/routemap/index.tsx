@@ -2,6 +2,10 @@ import React, {useState, SyntheticEvent} from 'react';
 import {Tabs, Tab} from '@mui/material';
 import TabPanel from '../TabPanel';
 import './routemap.sass';
+import KMRT from './img/KMRT.jpg';
+import TMRT from './img/TMRT.jpg';
+import TAMRT from './img/TAMRT.png';
+import TPMRT from './img/TPMRT.png';
 
 /**
  * 捷運路網圖
@@ -34,16 +38,16 @@ function RouteMap(): JSX.Element {
       </Tabs>
       <div id="image">
         <TabPanel value={routeMap} index="taipei">
-          <img src="https://web.metro.taipei/pages/assets/images/routemap2020.png" />
+          <img src={TPMRT} />
         </TabPanel>
         <TabPanel value={routeMap} index="taoyuan">
-          <img src="https://www.tymetro.com.tw/tymetro-new/tw/_images/travel-guide/road_02-1_big.jpg"/>
+          <img src={TAMRT} />
         </TabPanel>
         <TabPanel value={routeMap} index="TMRT">
-          <img src="https://www.tmrt.com.tw/static/img/metro-life/map/map.jpg" />
+          <img src={TMRT} />
         </TabPanel>
         <TabPanel value={routeMap} index="KMRT">
-          <img src="https://www.krtc.com.tw/Content/userfiles/images/guide-map.jpg" />
+          <img src={KMRT} />
         </TabPanel>
       </div>
     </div>
