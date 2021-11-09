@@ -72,7 +72,8 @@ function Route({name, city}: RouteProp): JSX.Element {
         state === 1
       ) ? '尚未發車' : estimeatedTime;
     const red = (time < 120) ? 100 : (time < 180) ? 200 : 255;
-    const backgroundColor = `rgb(${red}, 255, 255)`;
+    const backgroundColor = `rgb(255, ${red}, ${red})`;
+
     return [timeString, backgroundColor];
   };
 
