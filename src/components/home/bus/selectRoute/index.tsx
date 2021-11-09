@@ -64,7 +64,10 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
             variant="h6"
             component="div"
             noWrap
-            sx={{flexGrow: bus === '' ? 1 : 0}}
+            sx={{
+              flexGrow: bus === '' ? 1 : 0,
+              textAlign: 'left',
+            }}
           >
             {bus === '' ? citys[city as keyof typeof citys] : bus}
           </Typography>
