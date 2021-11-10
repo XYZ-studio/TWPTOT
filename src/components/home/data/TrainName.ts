@@ -20,3 +20,13 @@ export const TrainList: Array<TrainNameList> = [
   '7',
   '10',
 ];
+
+export const TrainName = [
+  '太魯閣',
+  '普悠瑪',
+  '自強',
+  '莒光',
+  '復興',
+  '普快',
+  '區間快',
+];

@@ -5,7 +5,7 @@ import Checkbox from '@mui/material/Checkbox';
 import ListItemText from '@mui/material/ListItemText';
 import {InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material';
 import {DailyTimetableType, DailyTrainInfo} from '../../data/Station';
-import {Train, TrainList, TrainNameList} from '../../data/TrainName';
+import {Train, TrainName, TrainList, TrainNameList} from '../../data/TrainName';
 
 interface selectTrainTypeprop {
   selectTrainType: string,
@@ -13,7 +13,7 @@ interface selectTrainTypeprop {
   handleChange: (event: SelectChangeEvent) => void
 }
 
-const trainType = [
+const train = [
   '自強', '區間', '莒光', '復興', '太魯閣', '普悠瑪', '普快',
 ];
 
@@ -39,6 +39,7 @@ function SelectTrainType(
         <Select
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
+          multiple
           label="火車種類"
           value={selectTrainType}
           onChange={handleChange}
@@ -47,6 +48,7 @@ function SelectTrainType(
             TrainList.map((Code: TrainNameList)=>{
               return (
                 <MenuItem key={Code} value={Code}>
+                  <Checkbox checked={TrainName.indexOf(Code) > -1}/>
                   <ListItemText primary={Code === 'all' ? '':Train[Code]} />
                 </MenuItem>
               );
