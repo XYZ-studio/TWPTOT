@@ -36,6 +36,7 @@ export interface DailyTrainInfo {
   EndingStationID: string;
   EndingStationName: Name;
   TrainTypeName: Name;
+  TrainTypeCode: string[];
   Note: Name;
 }
 

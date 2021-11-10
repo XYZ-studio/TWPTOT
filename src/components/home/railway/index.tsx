@@ -38,7 +38,7 @@ function Railway(): JSX.Element {
     return (event: SelectChangeEvent) => {
       setStart({
         city: set === 'city' ? event.target.value as CityListType : start.city,
-        station: set === 'station' ? event.target.value : end.station,
+        station: set === 'station' ? event.target.value : start.station,
         trainType: set === 'trainType' ? event.target.value : start.trainType,
       });
     };
@@ -116,10 +116,9 @@ function Railway(): JSX.Element {
         </div>
         <div className='railway'>
           <SelectTrainType
-            TrainType={}
             selectTrainType={start.trainType}
             handleChange={startHandleChange('trainType')}
-          />
+            TrainType={dailyTimetable} />
         </div>
       </div>
       {dailyTimetable.length === 0 ? (
