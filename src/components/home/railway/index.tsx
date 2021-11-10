@@ -58,7 +58,7 @@ function Railway(): JSX.Element {
     (async () => {
       // 請求api取得所有車站資料
       const response =
-        await ptxAPI.get<Array<Station>>('/Rail/TRA/Station?$format=JSON');
+        await ptxAPI().get<Array<Station>>('/Rail/TRA/Station?$format=JSON');
       const data = response.data;
       setRailwayStation(data);
     })();
@@ -69,7 +69,7 @@ function Railway(): JSX.Element {
       const date = new Date();
       const dateFromat = dateFormat(date, 'yyyy-mm-dd');
       if (start.station !== '' && end.station !== '') {
-        const response = await ptxAPI.get<Array<DailyTimetableType>>(
+        const response = await ptxAPI().get<Array<DailyTimetableType>>(
             '/Rail/TRA/DailyTimetable/OD/' +
               `${start.station}/to/${end.station}/${dateFromat}?$format=JSON`,
         );
@@ -115,10 +115,10 @@ function Railway(): JSX.Element {
           />
         </div>
         <div className='railway'>
-          <SelectTrainType
+          {/* <SelectTrainType
             selectTrainType={start.trainType}
             handleChange={startHandleChange('trainType')}
-            TrainType={dailyTimetable} />
+            TrainType={dailyTimetable} /> */}
         </div>
       </div>
       {dailyTimetable.length === 0 ? (

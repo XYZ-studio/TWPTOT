@@ -38,7 +38,7 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
   useEffect(() => {
     (async () => {
       const response =
-        await ptxAPI.get<Array<BusInfo>>(
+        await ptxAPI().get<Array<BusInfo>>(
             `/Bus/Route/City/${city}?$format=JSON`,
         );
       setBusRouteInfo(response.data);

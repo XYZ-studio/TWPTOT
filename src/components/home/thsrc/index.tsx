@@ -29,7 +29,7 @@ function Thsrc(): JSX.Element {
   useEffect(() => {
     (async () => {
       const response =
-        await ptxAPI.get<Array<Station>>('/Rail/THSR/Station?$format=JSON');
+        await ptxAPI().get<Array<Station>>('/Rail/THSR/Station?$format=JSON');
       const data = response.data;
       setThsrcStation(data);
     })();
@@ -40,7 +40,7 @@ function Thsrc(): JSX.Element {
       const date = new Date();
       const dateFromat = dateFormat(date, 'yyyy-MM-dd');
       if (start.station !== '') {
-        const response = await ptxAPI.get(
+        const response = await ptxAPI().get(
             '/Rail/THSR/DailyTimetable/' +
               `${start.station}/${dateFromat}?$format=JSON`,
         );
