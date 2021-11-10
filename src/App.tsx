@@ -3,6 +3,7 @@ import {Switch, BrowserRouter as Router, Route} from 'react-router-dom';
 import Home from './components/home';
 import Rick from './components/rick';
 import Page404 from './components/page404';
+import Contactus from './components/contactus';
 /**
  * @return{JSX.Element}
 **/
@@ -12,6 +13,9 @@ function App(): JSX.Element {
       <Switch>
         <Route exact path="/">
           <Home />
+        </Route>
+        <Route exact path="/contactus">
+          <Contactus />
         </Route>
         <Route exact path="/rick">
           <Rick />
