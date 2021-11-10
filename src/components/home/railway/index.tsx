@@ -63,7 +63,7 @@ function Railway(): JSX.Element {
       setRailwayStation(data);
     })();
   }, []);
-  // 當update staart and end state時執行
+  // 當update start and end state時執行
   useEffect(() => {
     (async () => {
       const date = new Date();
@@ -116,6 +116,7 @@ function Railway(): JSX.Element {
         </div>
         <div className='railway'>
           <SelectTrainType
+            TrainType={}
             selectTrainType={start.trainType}
             handleChange={startHandleChange('trainType')}
           />
@@ -125,7 +126,9 @@ function Railway(): JSX.Element {
             (start.station && end.station) ? '沒東西' : null
         ) : (
           <DailyTimetable dailyTimetable={dailyTimetable} />
+
       )}
+      {console.log(dailyTimetable)}
     </div>
   );
 }
