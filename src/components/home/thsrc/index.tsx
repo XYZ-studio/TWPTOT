@@ -58,7 +58,7 @@ function Thsrc(): JSX.Element {
       const dateFromat = dateFormat(date, 'yyyy-mm-dd');
       if (start.station !== '' && end.station !== '') {
         const response = await ptxAPI().get<Array<DailyTimetableType>>(
-            '/Rail/TRA/DailyTimetable/OD/' +
+            '/Rail/THSR/DailyTimetable/OD/' +
               `${start.station}/to/${end.station}/${dateFromat}?$format=JSON`,
         );
         setDailyTimetable(response.data);

@@ -2,6 +2,7 @@ import React from 'react';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import {DailyTimetableType} from '../../../data/Station';
+import {DailyTrainInfo} from '../../../data/ThsrcStation';
 import './dailytime.sass';
 interface DailyTimeProp {
   dailyTime: DailyTimetableType;
@@ -15,7 +16,7 @@ function DailyTime({dailyTime}: DailyTimeProp): JSX.Element {
   return (
     <TableRow className="dailytime">
       <TableCell>
-        {`${info.TrainTypeName.Zh_tw}${info.TrainNo}` +
+        {`${info.TrainNo}` +
           `(${info.StartingStationName.Zh_tw}→${info.EndingStationName.Zh_tw})`}
       </TableCell>
       <TableCell>
