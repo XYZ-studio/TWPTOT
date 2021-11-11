@@ -33,4 +33,3 @@ View on [HackMD](https://hackmd.io/@AVnwDI7AT1WV00h61-dCIg/B14lVgQUt)
 
 - 班次查詢
 - 查看時刻表
-- 路線規劃
