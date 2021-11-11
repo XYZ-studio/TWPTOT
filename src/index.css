@@ -8,12 +8,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(32, 35, 44);
-  max-height: 100vh;
-  overflow: hidden;
-}
-
-html {
-  height: 100vh;
 }
 
 code {
