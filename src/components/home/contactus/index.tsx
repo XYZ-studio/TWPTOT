@@ -18,6 +18,7 @@ function Contactus(): JSX.Element {
       <div className='card'>
         <img src='https://avatars.githubusercontent.com/u/77784793?v=4' />
       </div>
+      <h1></h1>
     </div>
   );
 }

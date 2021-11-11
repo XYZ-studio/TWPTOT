@@ -1,8 +1,11 @@
-import axios from 'axios';
+import axios, {AxiosInstance} from 'axios';
 import jsSHA from 'jssha';
 
-
-export const ptxAPI = () => {
+/**
+ * this function fuck ptxAPI
+ * @return {AxiosInstance}
+**/
+export function ptxAPI(): AxiosInstance {
   const xDate = new Date().toUTCString();
   // eslint-disable-next-line new-cap
   const ShaObj = new jsSHA('SHA-1', 'TEXT');
