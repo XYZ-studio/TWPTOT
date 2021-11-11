@@ -7,6 +7,8 @@ import './contactus.sass';
 function Contactus(): JSX.Element {
   return (
     <div>
+      <h1>Team XYZ</h1>
+      <p>我們是這個網站的開發團隊</p>
       <div className='card'>
         <img src='https://avatars.githubusercontent.com/u/62501690?v=4' />
       </div>
