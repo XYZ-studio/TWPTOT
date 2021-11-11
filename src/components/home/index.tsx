@@ -4,9 +4,10 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import {
   faBus,
   faSubway,
-  faMapMarkerAlt,
+  // faMapMarkerAlt,
   faTrain,
 } from '@fortawesome/free-solid-svg-icons';
+import InfoIcon from '@mui/icons-material/Info';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import HSR from './svg/hsr';
 import TabPanel from './TabPanel';
@@ -15,6 +16,7 @@ import Thsrc from './thsrc';
 import Railway from './railway';
 import Bus from './bus';
 import Directions from './directions';
+import Contactus from './contactus';
 import './home.sass';
 
 /**
@@ -53,17 +55,24 @@ function Home(): JSX.Element {
           className='index_menu'
           sx={{color: '#c5c3c3'}}
         />
-        <BottomNavigationAction
+        {/* <BottomNavigationAction
           icon={<FontAwesomeIcon icon={faMapMarkerAlt} />}
           label="路線規劃"
           value="directions"
           className='index_menu'
           sx={{color: '#c5c3c3'}}
-        />
+        /> */}
         <BottomNavigationAction
           icon={<FontAwesomeIcon icon={faSubway} />}
           label="捷運"
           value="routemap"
+          className="index_menu"
+          sx={{color: '#c5c3c3'}}
+        />
+        <BottomNavigationAction
+          icon={<InfoIcon />}
+          label="關於我們"
+          value="about"
           className="index_menu"
           sx={{color: '#c5c3c3'}}
         />
@@ -83,6 +92,9 @@ function Home(): JSX.Element {
         </TabPanel>
         <TabPanel value={navigation} index="directions">
           <Directions />
+        </TabPanel>
+        <TabPanel value={navigation} index="about">
+          <Contactus />
         </TabPanel>
       </div>
     </div>
