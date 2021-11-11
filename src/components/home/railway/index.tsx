@@ -121,12 +121,17 @@ function Railway(): JSX.Element {
             TrainType={dailyTimetable} /> */}
         </div>
       </div>
-      {dailyTimetable.length === 0 ? (
-            (start.station && end.station) ? '沒東西' : null
-        ) : (
-          <DailyTimetable dailyTimetable={dailyTimetable} />
-
-      )}
+      {dailyTimetable.length !== 0 ? (
+        <DailyTimetable dailyTimetable={dailyTimetable} />
+        ) : (start.station && end.station) ? (
+          <div style={{
+            textAlign: 'center',
+            marginTop: 30,
+          }}>
+            沒有班次
+          </div>
+        ) : null
+      }
       {console.log(dailyTimetable)}
     </div>
   );
