@@ -45,23 +45,12 @@ function DailyTimetable({dailyTimetable,
           </TableHead>
           <TableBody>
             {dailyTimetable.map((dailyTime) => {
-              const TrainType1 = dailyTime.DailyTrainInfo.TrainTypeName.Zh_tw;
-              return selectTrainType.some((type1) => type1 === 'all') ? (
+              return (
                 <DailyTime
                   key={dailyTime.DailyTrainInfo.TrainNo}
                   dailyTime={dailyTime}
                 />
-              ) : selectTrainType.some((type2) =>
-                type2 === TrainType1.substring(0, 2)) ?
-              <DailyTime
-                key={dailyTime.DailyTrainInfo.TrainNo}
-                dailyTime={dailyTime}
-              /> : selectTrainType.some((type2) =>
-                type2 === TrainType1.substring(0, 3)) ?
-            <DailyTime
-              key={dailyTime.DailyTrainInfo.TrainNo}
-              dailyTime={dailyTime}
-            /> : null;
+              );
             })}
           </TableBody>
         </Table>

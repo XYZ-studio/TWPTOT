@@ -9,27 +9,14 @@ import DailyTimetable from './dailyTimetable';
 import {Station, DailyTimetableType} from '../data/Station';
 import {CityListType} from '../data/City';
 import {ptxAPI} from '../api/ptx';
-import './railway.sass';
 import SelectTrainType from './selectTrainType';
+import {Train} from '../data/TrainName';
+import './railway.sass';
 
 interface SelectData {
   city: CityListType;
   station: string;
   trainType: string[];
-}
-
-/**
- * delete
- * @param {Array<T>} data
- * @param {number} index
- * @return {Array<T>}
- */
-function del<T>(data: Array<T>, index: number): Array<T> {
-  const cloneData = [...data];
-  console.log(cloneData);
-  cloneData.splice(index, 1);
-  console.log(cloneData);
-  return cloneData;
 }
 
 /**
@@ -44,23 +31,20 @@ function Railway(): JSX.Element {
     useState<Array<DailyTimetableType>>([]);
   // 用戶選取的起始站資料
   const [start, setStart] =
-    useState<SelectData>({city: 'all', station: '', trainType: ['all']});
+    useState<SelectData>({city: 'all', station: '', trainType: []});
   // 用戶選取的終點站資料
   const [end, setEnd] =
-    useState<SelectData>({city: 'all', station: '', trainType: ['all']});
+    useState<SelectData>({city: 'all', station: '', trainType: []});
   // 更新用戶選擇起始站資料到State
   const startHandleChange = (set: string) => {
     return (event: SelectChangeEvent) => {
       setStart({
         city: set === 'city' ? event.target.value as CityListType : start.city,
         station: set === 'station' ? event.target.value : start.station,
-        trainType: set === 'trainType' ?
-        (
-          (start.trainType.indexOf(event.target.value) > -1) ?
-            del(
-                start.trainType, start.trainType.indexOf(event.target.value),
-            ) :
-              [...start.trainType, event.target.value]
+        trainType: set === 'trainType' ? (
+          typeof event.target.value === 'string' ?
+            event.target.value.split(',') :
+            event.target.value
         ) : start.trainType,
       });
     };
@@ -100,7 +84,18 @@ function Railway(): JSX.Element {
             '/Rail/TRA/DailyTimetable/OD/' +
               `${start.station}/to/${end.station}/${dateFromat}?$format=JSON`,
         );
-        setDailyTimetable(response.data);
+        const data = response.data;
+        const dataFilter = data.filter((value) => {
+          const typeCode = value.DailyTrainInfo.TrainTypeCode;
+
+          return (
+            start.trainType.length === 0 ? true :
+              start.trainType.includes(
+                  Train[typeCode as keyof typeof Train],
+              ) ? true : false
+          );
+        });
+        setDailyTimetable(dataFilter);
       }
     })();
   }, [start, end]);
@@ -148,9 +143,7 @@ function Railway(): JSX.Element {
               startHandleChange('trainType') as
                 (event: SelectChangeEvent<string[]>) => void
             }
-            TrainType={dailyTimetable}
           />
-          {console.log(start.trainType)}
         </div>
       </div>
       {dailyTimetable.length === 0 ? (
