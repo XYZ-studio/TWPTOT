@@ -10,7 +10,7 @@ import {Station, DailyTimetableType} from '../data/Station';
 import {CityListType} from '../data/City';
 import {ptxAPI} from '../api/ptx';
 import './railway.sass';
-import SelectTrainType from './selectTrainType';
+// import SelectTrainType from './selectTrainType';
 
 interface SelectData {
   city: CityListType;

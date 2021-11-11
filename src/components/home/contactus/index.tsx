@@ -18,7 +18,7 @@ function Contactus(): JSX.Element {
       <div className='card'>
         <img src='https://avatars.githubusercontent.com/u/77784793?v=4' />
       </div>
-      <h1>使用交通部PTX服務平臺</h1>
+      <h2>使用交通部PTX服務平臺</h2>
       <img src="https://ptx.transportdata.tw/PTX/logo.jpg" width="300px"/>
     </div>
   );
