@@ -22,7 +22,7 @@ function SelectTrainType(
     }: selectTrainTypeprop,
 ): JSX.Element {
   return (
-    <FormGroup className="select1">
+    <FormGroup className="select1" style={{alignContent: 'center'}}>
       <FormControl sx={{m: 1, width: 200}} >
         <InputLabel id="demo-multiple-checkbox-label">火車種類</InputLabel>
         <Select
