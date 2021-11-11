@@ -6,7 +6,8 @@ export const Train = {
   '5': '復興',
   '6': '區間',
   '7': '普快',
-  '10': '區間快'};
+  '10': '區間快',
+};
 
 export type TrainNameList = keyof typeof Train | 'all';
 
