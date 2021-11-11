@@ -3,29 +3,26 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControl from '@mui/material/FormControl';
 import Checkbox from '@mui/material/Checkbox';
 import ListItemText from '@mui/material/ListItemText';
-import {InputLabel, MenuItem, Select, SelectChangeEvent} from '@mui/material';
-import {DailyTimetableType, DailyTrainInfo} from '../../data/Station';
-import {Train, TrainName, TrainList, TrainNameList} from '../../data/TrainName';
+import {OutlinedInput, Select, SelectChangeEvent} from '@mui/material';
+import {InputLabel, MenuItem} from '@mui/material';
+import {DailyTimetableType} from '../../data/Station';
+import {Train, TrainList, TrainNameList} from '../../data/TrainName';
 
 interface selectTrainTypeprop {
-  selectTrainType: string,
+  selectTrainType: string[],
   TrainType: Array<DailyTimetableType>,
-  handleChange: (event: SelectChangeEvent) => void
+  handleChange: (event: SelectChangeEvent<string[]>) => void
 }
 
 const train = [
-  '自強', '區間', '莒光', '復興', '太魯閣', '普悠瑪', '普快',
+  'all', '自強', '區間', '莒光', '復興', '太魯閣', '普悠瑪', '普快', '區間快',
 ];
-
 
 // const [trainName, setTrainName] = React.useState<string[]>([]);
 
 /**
  * @return {JSX.Element}
 **/
-
-
-// eslint-disable-next-line require-jsdoc
 function SelectTrainType(
     {selectTrainType,
       handleChange,
@@ -35,30 +32,30 @@ function SelectTrainType(
   return (
     <FormGroup className="select1">
       <FormControl sx={{m: 1, width: 200}} >
-        <InputLabel id="trianType">火車種類</InputLabel>
+        <InputLabel id="demo-multiple-checkbox-label">火車種類</InputLabel>
         <Select
           labelId="demo-multiple-checkbox-label"
           id="demo-multiple-checkbox"
-          multiple
-          label="火車種類"
+          label="車種"
+          // multiple
           value={selectTrainType}
           onChange={handleChange}
+          input={<OutlinedInput label="Tag" />}
+          renderValue={(selected) => selected.join(', ')}
         >
           {
-            TrainList.map((Code: TrainNameList)=>{
+            train.map((code)=>{
               return (
-                <MenuItem key={Code} value={Code}>
-                  <Checkbox checked={TrainName.indexOf(Code) > -1}/>
-                  <ListItemText primary={Code === 'all' ? '':Train[Code]} />
+                <MenuItem key={code} value={code}>
+                  <Checkbox checked={selectTrainType.indexOf(code) > -1} />
+                  <ListItemText primary={code} />
                 </MenuItem>
               );
             })
           }
-          )
         </Select>
       </FormControl>
     </FormGroup>
   );
 }
-
 export default SelectTrainType;

@@ -11,13 +11,17 @@ import {DailyTimetableType} from '../../data/Station';
 import './dailyTimeTable.sass';
 
 interface DailyTimetableProp {
-  dailyTimetable: Array<DailyTimetableType>
+  dailyTimetable: Array<DailyTimetableType>;
+  selectTrainType: string[];
 }
+
 /**
  * 車次資訊
  * @return {JSX.Element}
 **/
-function DailyTimetable({dailyTimetable}: DailyTimetableProp): JSX.Element {
+function DailyTimetable({dailyTimetable,
+  selectTrainType,
+}: DailyTimetableProp): JSX.Element {
   return (
     <Paper
       sx={{overflow: 'hidden'}}
@@ -41,18 +45,28 @@ function DailyTimetable({dailyTimetable}: DailyTimetableProp): JSX.Element {
           </TableHead>
           <TableBody>
             {dailyTimetable.map((dailyTime) => {
-              return (
+              const TrainType1 = dailyTime.DailyTrainInfo.TrainTypeName.Zh_tw;
+              return selectTrainType.some((type1) => type1 === 'all') ? (
                 <DailyTime
                   key={dailyTime.DailyTrainInfo.TrainNo}
                   dailyTime={dailyTime}
                 />
-              );
+              ) : selectTrainType.some((type2) =>
+                type2 === TrainType1.substring(0, 2)) ?
+              <DailyTime
+                key={dailyTime.DailyTrainInfo.TrainNo}
+                dailyTime={dailyTime}
+              /> : selectTrainType.some((type2) =>
+                type2 === TrainType1.substring(0, 3)) ?
+            <DailyTime
+              key={dailyTime.DailyTrainInfo.TrainNo}
+              dailyTime={dailyTime}
+            /> : null;
             })}
           </TableBody>
         </Table>
       </TableContainer>
     </Paper>
-
   );
 }
 

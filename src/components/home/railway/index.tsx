@@ -10,13 +10,28 @@ import {Station, DailyTimetableType} from '../data/Station';
 import {CityListType} from '../data/City';
 import {ptxAPI} from '../api/ptx';
 import './railway.sass';
-// import SelectTrainType from './selectTrainType';
+import SelectTrainType from './selectTrainType';
 
 interface SelectData {
   city: CityListType;
   station: string;
-  trainType: string;
+  trainType: string[];
 }
+
+/**
+ * delete
+ * @param {Array<T>} data
+ * @param {number} index
+ * @return {Array<T>}
+ */
+function del<T>(data: Array<T>, index: number): Array<T> {
+  const cloneData = [...data];
+  console.log(cloneData);
+  cloneData.splice(index, 1);
+  console.log(cloneData);
+  return cloneData;
+}
+
 /**
  * 臺鐵查詢頁面
  * @return {JSX.Element}
@@ -29,17 +44,24 @@ function Railway(): JSX.Element {
     useState<Array<DailyTimetableType>>([]);
   // 用戶選取的起始站資料
   const [start, setStart] =
-    useState<SelectData>({city: 'all', station: '', trainType: ''});
+    useState<SelectData>({city: 'all', station: '', trainType: ['all']});
   // 用戶選取的終點站資料
   const [end, setEnd] =
-    useState<SelectData>({city: 'all', station: '', trainType: ''});
+    useState<SelectData>({city: 'all', station: '', trainType: ['all']});
   // 更新用戶選擇起始站資料到State
   const startHandleChange = (set: string) => {
     return (event: SelectChangeEvent) => {
       setStart({
         city: set === 'city' ? event.target.value as CityListType : start.city,
         station: set === 'station' ? event.target.value : start.station,
-        trainType: set === 'trainType' ? event.target.value : start.trainType,
+        trainType: set === 'trainType' ?
+        (
+          (start.trainType.indexOf(event.target.value) > -1) ?
+            del(
+                start.trainType, start.trainType.indexOf(event.target.value),
+            ) :
+              [...start.trainType, event.target.value]
+        ) : start.trainType,
       });
     };
   };
@@ -49,7 +71,12 @@ function Railway(): JSX.Element {
       setEnd({
         city: set === 'city' ? event.target.value as CityListType : end.city,
         station: set === 'station' ? event.target.value : end.station,
-        trainType: set === 'trainType' ? event.target.value : start.trainType,
+        trainType: set === 'trainType' ?
+          (
+            typeof event.target.value === 'string' ?
+              event.target.value.split(',') :
+              event.target.value
+          ) : start.trainType,
       });
     };
   };
@@ -115,24 +142,23 @@ function Railway(): JSX.Element {
           />
         </div>
         <div className='railway'>
-          {/* <SelectTrainType
+          <SelectTrainType
             selectTrainType={start.trainType}
-            handleChange={startHandleChange('trainType')}
-            TrainType={dailyTimetable} /> */}
+            handleChange={
+              startHandleChange('trainType') as
+                (event: SelectChangeEvent<string[]>) => void
+            }
+            TrainType={dailyTimetable}
+          />
+          {console.log(start.trainType)}
         </div>
       </div>
-      {dailyTimetable.length !== 0 ? (
-        <DailyTimetable dailyTimetable={dailyTimetable} />
-        ) : (start.station && end.station) ? (
-          <div style={{
-            textAlign: 'center',
-            marginTop: 30,
-          }}>
-            沒有班次
-          </div>
-        ) : null
-      }
-      {console.log(dailyTimetable)}
+      {dailyTimetable.length === 0 ? (
+            (start.station && end.station) ? '沒東西' : null
+        ) : (
+          <DailyTimetable dailyTimetable={dailyTimetable}
+            selectTrainType={start.trainType} />
+      )}
     </div>
   );
 }
