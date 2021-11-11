@@ -10,18 +10,24 @@ function Contactus(): JSX.Element {
       <h1>Team XYZ</h1>
       <h2>我們是這個網站的開發團隊</h2>
       <div id='member'>
-        <div className='card'>
-          <img src='https://avatars.githubusercontent.com/u/62501690?v=4' />
+        <div>
+          <div className='card'>
+            <img src='https://avatars.githubusercontent.com/u/62501690?v=4' />
+          </div>
+          <h3 className='dcid'>Young#0001</h3>
         </div>
-        <h3 className='dcid'>Young#0001</h3>
-        <div className='card'>
-          <img src='https://avatars.githubusercontent.com/u/60529600?v=4' />
+        <div>
+          <div className='card'>
+            <img src='https://avatars.githubusercontent.com/u/60529600?v=4' />
+          </div>
+          <h3 className='dcid'>xiao xigua#8787</h3>
         </div>
-        <h3 className='dcid'>xiao xigua#8787</h3>
-        <div className='card'>
-          <img src='https://avatars.githubusercontent.com/u/77784793?v=4' />
+        <div>
+          <div className='card'>
+            <img src='https://avatars.githubusercontent.com/u/77784793?v=4' />
+          </div>
+          <h3 className='dcid'>Zanzan (Space Master)#6122</h3>
         </div>
-        <h3 className='dcid'>Zanzan (Space Master)#6122</h3>
       </div>
       <h1 className='title'>使用的API</h1>
       <div id='box'>
