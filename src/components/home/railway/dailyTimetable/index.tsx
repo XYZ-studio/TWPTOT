@@ -12,16 +12,17 @@ import './dailyTimeTable.sass';
 
 interface DailyTimetableProp {
   dailyTimetable: Array<DailyTimetableType>;
-  selectTrainType: string[];
 }
 
 /**
  * 車次資訊
  * @return {JSX.Element}
 **/
-function DailyTimetable({dailyTimetable,
-  selectTrainType,
-}: DailyTimetableProp): JSX.Element {
+function DailyTimetable(
+    {
+      dailyTimetable,
+    }: DailyTimetableProp,
+): JSX.Element {
   return (
     <Paper
       sx={{overflow: 'hidden'}}

@@ -149,8 +149,7 @@ function Railway(): JSX.Element {
       {dailyTimetable.length === 0 ? (
             (start.station && end.station) ? '沒東西' : null
         ) : (
-          <DailyTimetable dailyTimetable={dailyTimetable}
-            selectTrainType={start.trainType} />
+          <DailyTimetable dailyTimetable={dailyTimetable} />
       )}
     </div>
   );
