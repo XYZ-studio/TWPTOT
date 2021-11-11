@@ -19,6 +19,8 @@ import {ptxAPI} from '../../../api/ptx';
 interface RouteProp {
   name: string;
   city: string;
+  update: boolean;
+  setUpdate: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const BusRouteTabs = styled(Tabs)(() => ({
@@ -39,7 +41,7 @@ const BusRouteTab = styled(Tab)(() => ({
 /**
  * @return {JSX.Element}
 **/
-function Route({name, city}: RouteProp): JSX.Element {
+function Route({name, city, update, setUpdate}: RouteProp): JSX.Element {
   const [busRouteInfo, setBusRouteInfo] =
     useState<Array<BusRouteInfo>>([]);
   const [selectBusRoute, setSelectBusRoute] =
@@ -97,7 +99,7 @@ function Route({name, city}: RouteProp): JSX.Element {
 
       setBusRouteInfo(busRouteResponse.data);
       setBusDisplayStopOfRoute(displayStopOfRouteResponse.data);
-      await updateBusEstimatedTimeOfArrivalData();
+      // await updateBusEstimatedTimeOfArrivalData();
     })();
 
     const intervalID = setInterval(() => {
@@ -106,10 +108,21 @@ function Route({name, city}: RouteProp): JSX.Element {
     }, 10000);
 
     return () => {
-      console.log(`clear interval ${intervalID}`);
       clearInterval(intervalID);
     };
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      if (update) {
+        console.log('WTF');
+        await updateBusEstimatedTimeOfArrivalData();
+        setTimeout(() => {
+          setUpdate(false);
+        }, 1000);
+      }
+    })();
+  }, [update]);
 
   return (
     <div>

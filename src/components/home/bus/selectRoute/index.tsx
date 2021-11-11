@@ -14,6 +14,7 @@ import SearchBox from './search';
 import Route from './route';
 import {citys} from '../../data/City';
 import {BusInfo} from '../../data/Bus';
+import CachedIcon from '@mui/icons-material/Cached';
 
 interface BusRouteProp {
   city: string;
@@ -28,6 +29,7 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
   const [busRouteInfo, setBusRouteInfo] = useState<Array<BusInfo>>([]);
   const [searchString, setSearchString] = useState('');
   const [bus, setBus] = useState('');
+  const [update, setUpdate] = useState(false);
 
   const handleChangeSearch = (event: ChangeEvent) => {
     setSearchString((event.target as HTMLInputElement).value);
@@ -65,7 +67,7 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
             component="div"
             noWrap
             sx={{
-              flexGrow: bus === '' ? 1 : 0,
+              flexGrow: 1,
               textAlign: 'left',
             }}
           >
@@ -77,10 +79,24 @@ function BusRoute({city, setCity}: BusRouteProp): JSX.Element {
                 onChange={handleChangeSearch}
               />
             </Typography>
-          ) : null}
+          ) : (
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              sx={{mr: 2}}
+              onClick={() => {
+                update ? null : setUpdate(true);
+              }}
+            >
+              <CachedIcon />
+            </IconButton>
+          )}
         </Toolbar>
       </AppBar>
-      {bus !== '' ? (<Route name={bus} city={city}/>) : (
+      {bus !== '' ? (
+        <Route name={bus} city={city} update={update} setUpdate={setUpdate} />
+      ) : (
         <List>
           {busRouteInfo.map((busInfo: BusInfo) => {
             return new RegExp(searchString).test(busInfo.RouteName.Zh_tw) ? (
