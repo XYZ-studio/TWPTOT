@@ -6,7 +6,7 @@ import './contactus.sass';
 **/
 function Contactus(): JSX.Element {
   return (
-    <div>
+    <div id="contactus">
       <h1>Team XYZ</h1>
       <h2>我們是這個網站的開發團隊</h2>
       <div id='member'>
@@ -30,10 +30,8 @@ function Contactus(): JSX.Element {
         </div>
       </div>
       <h1 className='title'>使用的API</h1>
-      <div id='box'>
-        <h2>交通部PTX服務平臺</h2>
-        <img src="https://ptx.transportdata.tw/PTX/logo.jpg" width="300px"/>
-      </div>
+      <h2>交通部PTX服務平臺</h2>
+      <img src="https://ptx.transportdata.tw/PTX/logo.jpg" width="300px"/>
     </div>
   );
 }
