@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import dateFormat from 'dateformat';
 import {SelectChangeEvent} from '@mui/material/Select';
+import {faLongArrowAltDown} from '@fortawesome/free-solid-svg-icons';
 import SelectStation from './selectStation';
 import DailyTimetable from './dailyTimeTable';
 import {Station, DailyTimetableType} from '../data/Station';
 import {ptxAPI} from '../api/ptx';
 import './thsrc.sass';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 
 interface SelectData {
@@ -85,7 +87,7 @@ function Thsrc(): JSX.Element {
           fontSize: '30px',
           color: 'rgba(0, 0, 0, 0.87)',
         }}>
-          {/* <FontAwesomeIcon icon={faLongArrowAltDown} /> */}
+          <FontAwesomeIcon icon={faLongArrowAltDown} />
         </span>
         <div className="select">
           <SelectStation
