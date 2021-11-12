@@ -6,7 +6,6 @@ import ListItemText from '@mui/material/ListItemText';
 import {OutlinedInput, Select, SelectChangeEvent} from '@mui/material';
 import {InputLabel, MenuItem} from '@mui/material';
 import {DailyTimetableType} from '../../data/Station';
-import {Train, TrainList, TrainNameList} from '../../data/TrainName';
 
 interface selectTrainTypeprop {
   selectTrainType: string[],

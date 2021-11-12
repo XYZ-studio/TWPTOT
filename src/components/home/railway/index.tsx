@@ -11,11 +11,13 @@ import {CityListType} from '../data/City';
 import {ptxAPI} from '../api/ptx';
 import './railway.sass';
 import SelectTrainType from './selectTrainType';
+import SelectTime from './selectDate';
 
 interface SelectData {
   city: CityListType;
   station: string;
   trainType: string[];
+  Time: string;
 }
 
 /**
@@ -44,10 +46,12 @@ function Railway(): JSX.Element {
     useState<Array<DailyTimetableType>>([]);
   // 用戶選取的起始站資料
   const [start, setStart] =
-    useState<SelectData>({city: 'all', station: '', trainType: ['all']});
+    useState<SelectData>({city: 'all', station: '',
+      trainType: ['all'], Time: ''});
   // 用戶選取的終點站資料
   const [end, setEnd] =
-    useState<SelectData>({city: 'all', station: '', trainType: ['all']});
+    useState<SelectData>({city: 'all', station: '',
+      trainType: ['all'], Time: ''});
   // 更新用戶選擇起始站資料到State
   const startHandleChange = (set: string) => {
     return (event: SelectChangeEvent) => {
@@ -62,6 +66,7 @@ function Railway(): JSX.Element {
             ) :
               [...start.trainType, event.target.value]
         ) : start.trainType,
+        Time: set === 'time' ? event.target.value: start.Time,
       });
     };
   };
@@ -77,6 +82,7 @@ function Railway(): JSX.Element {
               event.target.value.split(',') :
               event.target.value
           ) : start.trainType,
+        Time: set === 'time' ? event.target.value : start.Time,
       });
     };
   };
@@ -150,7 +156,10 @@ function Railway(): JSX.Element {
             }
             TrainType={dailyTimetable}
           />
-          {console.log(start.trainType)}
+          <SelectTime
+            selectTime={start.Time}
+            handleChange={startHandleChange('time')}
+          />
         </div>
       </div>
       {dailyTimetable.length === 0 ? (
