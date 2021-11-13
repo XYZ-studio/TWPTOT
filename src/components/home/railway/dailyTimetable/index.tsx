@@ -38,7 +38,8 @@ function DailyTimetable(
         >
           <TableHead>
             <TableRow className="dailytime">
-              <TableCell>車種車次 (始發站 → 終點站)</TableCell>
+              <TableCell>車種</TableCell>
+              <TableCell>車次 (始發站 → 終點站)</TableCell>
               <TableCell>到站時間</TableCell>
               <TableCell>抵達時間</TableCell>
               <TableCell>備註</TableCell>

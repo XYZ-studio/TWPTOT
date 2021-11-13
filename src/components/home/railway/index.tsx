@@ -85,6 +85,7 @@ function Railway(): JSX.Element {
               `${start.station}/to/${end.station}/${dateFromat}?$format=JSON`,
         );
         const data = response.data;
+        console.log(data);
         const dataFilter = data.filter((value) => {
           const typeCode = value.DailyTrainInfo.TrainTypeCode;
 
