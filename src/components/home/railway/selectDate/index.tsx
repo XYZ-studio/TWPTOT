@@ -6,25 +6,26 @@ import {SelectChangeEvent} from '@mui/material';
 import {DatePicker} from '@mui/lab';
 
 interface selectTimeProp {
-  selectTime: string;
+  selectTime: Date;
   handleChange: (event: SelectChangeEvent) => void
 }
+
 /**
  * select time
  * @return {JSX.Element}
 **/
-function SelectTime({selectTime, handleChange}: selectTimeProp): JSX.Element {
-  const [value, setValue] = React.useState<Date | null>(new Date());
-  let selectTime1 = new Date;
+function SelectTime({selectTime,
+  handleChange}: selectTimeProp): JSX.Element {
+  const [selectTime1, setSelectTime] = React.useState<Date>(new Date);
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
         label="出發時間"
         value={selectTime1}
         onChange={(newValue) => {
-          setValue(newValue);
-          newValue === null ? '' : selectTime = newValue.toString();
-          selectTime1 = new Date(selectTime);
+          setSelectTime(newValue === null ? new Date : newValue);
+          newValue === null ? '' : selectTime = selectTime1;
+          handleChange;
         }}
         renderInput={(params) => <TextField {...params} />}
       />

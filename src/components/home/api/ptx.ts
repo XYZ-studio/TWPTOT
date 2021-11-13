@@ -12,7 +12,7 @@ export function ptxAPI(): AxiosInstance {
   ShaObj.setHMACKey('hDYdNJa8TdNMxrmOJpWhL2bod2Q', 'TEXT');
   ShaObj.update('x-date: ' + xDate);
   const HMAC = ShaObj.getHMAC('B64');
-  console.log(HMAC);
+  // console.log(HMAC);
 
   return axios.create(
       {

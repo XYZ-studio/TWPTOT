@@ -17,7 +17,7 @@ interface SelectData {
   city: CityListType;
   station: string;
   trainType: string[];
-  Time: string;
+  Time: Date;
 }
 
 /**
@@ -28,9 +28,9 @@ interface SelectData {
  */
 function del<T>(data: Array<T>, index: number): Array<T> {
   const cloneData = [...data];
-  console.log(cloneData);
+  // console.log(cloneData);
   cloneData.splice(index, 1);
-  console.log(cloneData);
+  // console.log(cloneData);
   return cloneData;
 }
 
@@ -47,11 +47,11 @@ function Railway(): JSX.Element {
   // 用戶選取的起始站資料
   const [start, setStart] =
     useState<SelectData>({city: 'all', station: '',
-      trainType: ['all'], Time: ''});
+      trainType: ['all'], Time: new Date});
   // 用戶選取的終點站資料
   const [end, setEnd] =
     useState<SelectData>({city: 'all', station: '',
-      trainType: ['all'], Time: ''});
+      trainType: ['all'], Time: new Date});
   // 更新用戶選擇起始站資料到State
   const startHandleChange = (set: string) => {
     return (event: SelectChangeEvent) => {
@@ -66,7 +66,7 @@ function Railway(): JSX.Element {
             ) :
               [...start.trainType, event.target.value]
         ) : start.trainType,
-        Time: set === 'time' ? event.target.value: start.Time,
+        Time: set === 'time' ? new Date(event.target.value) : start.Time,
       });
     };
   };
@@ -82,7 +82,7 @@ function Railway(): JSX.Element {
               event.target.value.split(',') :
               event.target.value
           ) : start.trainType,
-        Time: set === 'time' ? event.target.value : start.Time,
+        Time: set === 'time' ? new Date(event.target.value) : start.Time,
       });
     };
   };
@@ -160,6 +160,7 @@ function Railway(): JSX.Element {
             selectTime={start.Time}
             handleChange={startHandleChange('time')}
           />
+          {console.log(start.Time)}
         </div>
       </div>
       {dailyTimetable.length === 0 ? (
