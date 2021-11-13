@@ -99,7 +99,7 @@ function Route({name, city, update, setUpdate}: RouteProp): JSX.Element {
 
       setBusRouteInfo(busRouteResponse.data);
       setBusDisplayStopOfRoute(displayStopOfRouteResponse.data);
-      // await updateBusEstimatedTimeOfArrivalData();
+      await updateBusEstimatedTimeOfArrivalData();
     })();
 
     const intervalID = setInterval(() => {
