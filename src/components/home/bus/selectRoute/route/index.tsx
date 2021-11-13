@@ -115,7 +115,7 @@ function Route({name, city, update, setUpdate}: RouteProp): JSX.Element {
   useEffect(() => {
     (async () => {
       if (update) {
-        console.log('WTF');
+        console.log('update');
         await updateBusEstimatedTimeOfArrivalData();
         setTimeout(() => {
           setUpdate(false);

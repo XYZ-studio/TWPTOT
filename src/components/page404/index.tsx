@@ -17,7 +17,7 @@ function Page404(): JSX.Element {
           The page is not found,but we can bring you to homepage.
         </h2>
       </div>
-      <a href='/'>
+      <a href='https://xyz-studio.github.io/TWPTOT/'>
         <button className="button-29" role="button">
           GO TO HOMEPAGE
         </button>
